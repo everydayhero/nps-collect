@@ -1,0 +1,25 @@
+{
+  "name": "nps-survey-prototype",
+  "version": "1.0.0",
+  "description": "React prototype of NPS survey widgets for Everydayhero",
+  "main": "index.js",
+  "scripts": {
+    "start": "brb serve",
+    "build": "brb build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/everydayhero/nps-survey-prototype.git"
+  },
+  "author": "@howlingeverett",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/everydayhero/nps-survey-prototype/issues"
+  },
+  "homepage": "https://github.com/everydayhero/nps-survey-prototype#readme",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "boiler-room-builder": "^1.0.0-11",
+    "cxs": "^1.0.1"
+  }
+}
