@@ -28,10 +28,12 @@
     "boiler-room-builder": "^1.0.0-11",
     "cxs": "^1.0.1",
     "enzyme": "^2.4.1",
+    "jeffrey": "^0.0.10",
     "jsdom": "^9.5.0",
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
-    "sinon": "^1.17.6"
+    "sinon": "^1.17.6",
+    "sinon-as-promised": "^4.0.2"
   },
   "babel": {
     "presets": [
