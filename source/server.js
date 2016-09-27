@@ -10,7 +10,7 @@ const renderDocument = ({ assets = [], content = '' }) => {
   const styles = assets.filter((asset) => asset.match(/\.css$/))
   const scripts = assets.filter((asset) => asset.match(/\.js$/))
 
-	return (`
+  return (`
     <!doctype html>
     <html>
       <head>
@@ -21,10 +21,10 @@ const renderDocument = ({ assets = [], content = '' }) => {
         ${renderScripts(scripts)}
       </body>
     </html>
-	`)
+  `)
 }
 
-export default ({ assets  }) => (route) => (
+export default ({ assets }) => (route) => (
   Promise.resolve({
     result: renderDocument({
       content: `Route: ${route}`,
