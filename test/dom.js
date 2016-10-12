@@ -7,7 +7,7 @@ global.window = dom.defaultView
 
 propagateToGlobal(global.window)
 
-function propagateToGlobal(window) {
+function propagateToGlobal (window) {
   for (let key in window) {
     if (!window.hasOwnProperty(key)) { continue }
     if (key in global) { continue }

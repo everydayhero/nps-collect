@@ -16,6 +16,7 @@ test('renders as a radio input inside a label', t => {
   t.true(label.length === 1, 'Must render a label element')
   t.true(label.find('input[type="radio"]').length === 1,
     'Label should contain a radio input')
+  t.is(label.text(), '9')
 })
 
 test('renders the score as the value for the radio button', t => {

@@ -5,6 +5,7 @@ const RatingButton = ({
   handleSelected
 }) => (
   <label htmlFor={`npsScore_${score}`}>
+    {score}
     <input
       type='radio'
       id={`npsScore_${score}`}

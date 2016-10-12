@@ -4,12 +4,14 @@ const SubmitButton = ({
   handleClicked
 }) => (
   <button
-    type="submit"
+    type='submit'
     onClick={event => {
       event.preventDefault()
       handleClicked()
     }}
-  />
+  >
+    Send Feedback
+  </button>
 )
 
 SubmitButton.propTypes = {

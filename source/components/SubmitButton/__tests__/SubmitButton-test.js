@@ -9,6 +9,7 @@ test('renders a submit button', t => {
   const wrapper = shallow(<SubmitButton handleClicked={() => {}} />)
 
   t.true(wrapper.is('button[type="submit"]'))
+  t.is(wrapper.text(), 'Send Feedback')
 })
 
 test('calls handleClicked on click', t => {

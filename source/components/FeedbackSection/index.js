@@ -4,11 +4,7 @@ import FeedbackTextarea from '../FeedbackTextarea'
 import SubmitButton from '../SubmitButton'
 
 class FeedbackSection extends React.Component {
-  componentDidMount() {
-
-  }
-
-  render() {
+  render () {
     const { handleFeedbackChanged, handleFeedbackSubmitted } = this.props
 
     return (
