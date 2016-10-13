@@ -48,16 +48,38 @@ class NPSCollect extends React.Component {
 
     return (
       <form>
-        {sending && <LoadingIndicator complete={submitted} />}
+        <header>
+          <img className='everydayhero-logo' src='' alt='Everydayhero logo' />
+        </header>
 
-        <RatingButtonGroup handleScoreSelected={this.handleScoreSelected} />
+        <section id='nps-preamble'>
+          <img className='' src='' alt='Clap emoji' />
 
-        {showFeedbackInput &&
-          <FeedbackSection
-            handleFeedbackChanged={this.handleFeedbackChanged}
-            handleFeedbackSubmitted={this.submitFeedback}
-          />
-        }
+          <p>
+            <strong>{'Thank you for donating with Everydayhero. You\'re awesome!'}</strong>
+          </p>
+
+          <p>
+            {'If you have a second, we\'d value your feedback'}
+          </p>
+        </section>
+
+        <section id='nps-inputs'>
+          <p>
+            <strong>{'How likely would you be to recommend us to your friends or family?'}</strong>
+          </p>
+
+          {sending && <LoadingIndicator complete={submitted} />}
+
+          <RatingButtonGroup handleScoreSelected={this.handleScoreSelected} />
+
+          {showFeedbackInput &&
+            <FeedbackSection
+              handleFeedbackChanged={this.handleFeedbackChanged}
+              handleFeedbackSubmitted={this.submitFeedback}
+            />
+          }
+        </section>
       </form>
     )
   }

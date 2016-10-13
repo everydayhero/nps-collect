@@ -1,4 +1,5 @@
 import React from 'react'
+import RadialList from 'react-radial-list'
 
 import RatingButton from '../RatingButton'
 
@@ -6,13 +7,16 @@ const RatingButtonGroup = ({
   handleScoreSelected
 }) => (
   <div id='npsScoreGroup'>
-    {npsRange.map(score => (
-      <RatingButton
-        key={score}
-        score={score}
-        handleSelected={handleScoreSelected}
-      />
-    ))}
+    <RadialList
+      items={npsRange.map(score => (
+        <RatingButton
+          key={score}
+          score={score}
+          handleSelected={handleScoreSelected}
+        />
+      ))}
+      offsetDegrees={107}
+    />
   </div>
 )
 

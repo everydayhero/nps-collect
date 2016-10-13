@@ -1,7 +1,7 @@
 import React from 'react'
 import test from 'ava'
 import { stub } from 'sinon'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 
 import RatingButtonGroup from '../'
 import RatingButton from '../../RatingButton'
@@ -9,7 +9,7 @@ import RatingButton from '../../RatingButton'
 let wrapper
 
 test.beforeEach(() => {
-  wrapper = shallow(<RatingButtonGroup handleScoreSelected={() => {}} />)
+  wrapper = mount(<RatingButtonGroup handleScoreSelected={() => {}} />)
 })
 
 test('renders 11 rating buttons', t => {

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "brb serve",
     "build": "brb build",
-    "test": "ava"
+    "test": "ava",
+    "test:watch": "ava --watch"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "lodash": "^4.16.2",
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
+    "react-radial-list": "^1.0.1",
     "sinon": "^1.17.6",
     "sinon-as-promised": "^4.0.2"
   },
