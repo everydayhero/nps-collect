@@ -14,12 +14,19 @@ describe('NPSCollect container component', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = shallow(<NPSCollect trackingToken='test-token' />)
-    sinon.stub(data, 'sendNPS').resolves()
+    wrapper = shallow(
+      <NPSCollect
+        pageId='test-page'
+        userId='test-user'
+      />
+    )
+    sinon.stub(data, 'sendNPSScore').resolves()
+    sinon.stub(data, 'sendNPSFeedback').resolves()
   })
 
   afterEach(() => {
-    data.sendNPS.restore()
+    data.sendNPSScore.restore()
+    data.sendNPSFeedback.restore()
   })
 
   it('should render as a form', () => {
@@ -95,14 +102,24 @@ describe('NPSCollect container component', () => {
     assert(wrapper.state('feedback') === 'test feedback')
   })
 
-  it('should send score and feedback via the sendNPS data function', () => {
+  it('should send feedback via the sendNPSFeedback data function', () => {
     const npsCollect = wrapper.instance()
 
     npsCollect.handleScoreSelected(5)
     npsCollect.handleFeedbackChanged({ target: { value: 'Try again' } })
     npsCollect.submitFeedback()
 
-    assert(data.sendNPS.calledWith(5, 'Try again', 'test-token'))
+    assert(data.sendNPSFeedback.calledWith('test-page', 'test-user', 'Try again'))
+  })
+
+  it('should send score the sendNPSScore data function', () => {
+    const npsCollect = wrapper.instance()
+
+    npsCollect.handleScoreSelected(5)
+    npsCollect.handleFeedbackChanged({ target: { value: 'Try again' } })
+    npsCollect.submitFeedback()
+
+    assert(data.sendNPSScore.calledWith('test-page', 'test-user', 5))
   })
 
   it('should set sending on state when submitting feedback', () => {

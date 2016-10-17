@@ -4,8 +4,8 @@
   "description": "React prototype of NPS survey widgets for Everydayhero",
   "main": "source/client.js",
   "scripts": {
-    "start": "brb serve",
-    "build": "brb build",
+    "start": "brb serve --client-config='./webpack.client.config'",
+    "build": "brb build --client-config='./webpack.client.config'",
     "test": "standard && mocha --opts test/mocha.opts source/**/*-test.js",
     "test:watch": "mocha --opts test/mocha.opts --watch source/**/*-test.js"
   },

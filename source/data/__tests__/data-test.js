@@ -3,40 +3,44 @@ import { stub } from 'sinon'
 import 'sinon-as-promised'
 import jeffrey from 'jeffrey'
 
-import { sendNPS } from '../'
+import { sendNPSScore } from '../'
 
 describe('data sending module', () => {
   beforeEach(() => {
+    process.env.JEFFREY_TOKEN = 'test-token'
     stub(jeffrey, 'init')
     stub(jeffrey, 'trackAction')
   })
 
   afterEach(() => {
+    delete process.env.JEFFREY_TOKEN
     jeffrey.init.restore()
     jeffrey.trackAction.restore()
   })
 
   it('should call jeffrey.init with tracking token', () => {
-    sendNPS(3, 'Your website sucks', 'test-token')
+    sendNPSScore('test-page', 'test-user', 3)
 
+    console.log(jeffrey.init.firstCall.args)
     assert(jeffrey.init.calledWith('test-token'))
   })
 
   it('should return a Promise', () => {
-    const promise = sendNPS(3, 'Your website sucks', 'test-token')
+    const promise = sendNPSScore('test-page', 'test-user', 3)
 
     assert(promise instanceof Promise)
   })
 
   it('should call jeffrey.trackAction with a properly formatted event', () => {
-    sendNPS(3, 'Your website sucks', 'test-token')
+    sendNPSScore('test-page', 'test-user', 3)
 
     assert(jeffrey.trackAction.called)
     assert(jeffrey.trackAction.calledWith(
-      'supporter.nps.send-feedback',
+      'supporter.nps.send-score',
       {
-        score: 3,
-        feedback: 'Your website sucks'
+        pageId: 'test-page',
+        userId: 'test-user',
+        score: 3
       }
     ))
   })
@@ -46,7 +50,7 @@ describe('data sending module', () => {
   it('should resolve the promise when trackAction callback fires', () => {
     jeffrey.trackAction.yieldsAsync()
 
-    return sendNPS(5, 'Fun, but dumb', 'test-token').then(() => {
+    return sendNPSScore('test-page', 'test-user', 3).then(() => {
       assert(true, 'sendNPS Promise resolved successfully')
     })
   })

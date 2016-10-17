@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { sendNPS } from '../../data'
+import { sendNPSScore, sendNPSFeedback } from '../../data'
 import RatingButtonGroup from '../RatingButtonGroup'
 import FeedbackSection from '../FeedbackSection'
 import LoadingIndicator from '../LoadingIndicator'
@@ -16,13 +16,24 @@ class NPSCollect extends React.Component {
     this.handleScoreSelected = this.handleScoreSelected.bind(this)
   }
 
-  submitFeedback () {
-    const { score, feedback } = this.state
-    const { trackingToken } = this.props
+  submitScore () {
+    const { score } = this.state
+    const { pageId, userId } = this.props
 
     this.setState({ sending: true })
 
-    return sendNPS(score, feedback, trackingToken).then(() => {
+    return sendNPSScore(pageId, userId, score).then(() => {
+      this.setState({ sending: false })
+    })
+  }
+
+  submitFeedback () {
+    const { feedback } = this.state
+    const { pageId, userId } = this.props
+
+    this.setState({ sending: true })
+
+    return sendNPSFeedback(pageId, userId, feedback).then(() => {
       this.setState({ submitted: true, sending: false })
     })
   }
@@ -31,11 +42,9 @@ class NPSCollect extends React.Component {
     this.setState({ score })
 
     if (score < 9) {
-      return this.setState({ showFeedbackInput: true })
-    } else {
-      this.setState({ showFeedbackInput: false })
-      this.submitFeedback()
+      this.setState({ showFeedbackInput: true })
     }
+    this.submitScore()
   }
 
   handleFeedbackChanged (event) {
@@ -86,7 +95,8 @@ class NPSCollect extends React.Component {
 }
 
 NPSCollect.propTypes = {
-  trackingToken: React.PropTypes.string.isRequired
+  pageId: React.PropTypes.string.isRequired,
+  userId: React.PropTypes.string.isRequired
 }
 
 export default NPSCollect
