@@ -1,5 +1,5 @@
 import React from 'react'
-import test from 'ava'
+import assert from 'power-assert'
 import { shallow } from 'enzyme'
 import sinon from 'sinon'
 import 'sinon-as-promised'
@@ -10,123 +10,125 @@ import FeedbackSection from '../../FeedbackSection'
 import LoadingIndicator from '../../LoadingIndicator'
 import NPSCollect from '../'
 
-let wrapper
+describe('NPSCollect container component', () => {
+  let wrapper
 
-test.beforeEach(() => {
-  wrapper = shallow(<NPSCollect trackingToken='test-token' />)
-  sinon.stub(data, 'sendNPS').resolves()
-})
+  beforeEach(() => {
+    wrapper = shallow(<NPSCollect trackingToken='test-token' />)
+    sinon.stub(data, 'sendNPS').resolves()
+  })
 
-test.afterEach(() => {
-  data.sendNPS.restore()
-})
+  afterEach(() => {
+    data.sendNPS.restore()
+  })
 
-test('renders as a form', t => {
-  t.true(wrapper.is('form'))
-})
+  it('should render as a form', () => {
+    assert(wrapper.is('form'))
+  })
 
-test('renders a RatingButtonGroup', t => {
-  t.true(wrapper.find(RatingButtonGroup).length === 1)
-})
+  it('should render a RatingButtonGroup', () => {
+    assert(wrapper.find(RatingButtonGroup).length === 1)
+  })
 
-test('passes handleScoreSelected prop down to RatingButtonGroup', t => {
-  const npsCollect = wrapper.instance()
-  const ratingButtonGroup = wrapper.find(RatingButtonGroup)
+  it('should pass handleScoreSelected prop down to RatingButtonGroup', () => {
+    const npsCollect = wrapper.instance()
+    const ratingButtonGroup = wrapper.find(RatingButtonGroup)
 
-  t.is(npsCollect.handleScoreSelected, ratingButtonGroup.prop('handleScoreSelected'))
-})
+    assert(npsCollect.handleScoreSelected === ratingButtonGroup.prop('handleScoreSelected'))
+  })
 
-test('does not render a FeedbackSection initially', t => {
-  t.falsy(wrapper.find(FeedbackSection).length)
-})
+  it('should not render a FeedbackSection initially', () => {
+    assert(wrapper.find(FeedbackSection).length === 0)
+  })
 
-test.serial('renders a FeedbackSection if the score is lower than 9', t => {
-  const npsCollect = wrapper.instance()
+  it('should render a FeedbackSection if the score is lower than 9', () => {
+    const npsCollect = wrapper.instance()
 
-  npsCollect.handleScoreSelected(7)
-  wrapper.update()
+    npsCollect.handleScoreSelected(7)
+    wrapper.update()
 
-  t.truthy(wrapper.find(FeedbackSection).length)
-})
+    assert(wrapper.find(FeedbackSection).length === 1)
+  })
 
-test.serial('does not render FeedbackSection if score is greater than 9', t => {
-  const npsCollect = wrapper.instance()
-  sinon.stub(npsCollect, 'submitFeedback')
+  it('should not render FeedbackSection if score is greater than 9', () => {
+    const npsCollect = wrapper.instance()
+    sinon.stub(npsCollect, 'submitFeedback')
 
-  npsCollect.handleScoreSelected(9)
-  wrapper.update()
+    npsCollect.handleScoreSelected(9)
+    wrapper.update()
 
-  t.falsy(wrapper.find(FeedbackSection).length)
-})
+    assert(wrapper.find(FeedbackSection).length === 0)
+  })
 
-test.serial('passes handleFeedbackChanged down to FeedbackSection', t => {
-  const npsCollect = wrapper.instance()
+  it('passes handleFeedbackChanged down to FeedbackSection', () => {
+    const npsCollect = wrapper.instance()
 
-  npsCollect.handleScoreSelected(8)
-  wrapper.update()
-  const feedbackSection = wrapper.find(FeedbackSection)
+    npsCollect.handleScoreSelected(8)
+    wrapper.update()
+    const feedbackSection = wrapper.find(FeedbackSection)
 
-  t.is(npsCollect.handleFeedbackChanged, feedbackSection.prop('handleFeedbackChanged'))
-})
+    assert(npsCollect.handleFeedbackChanged === feedbackSection.prop('handleFeedbackChanged'))
+  })
 
-test.serial('passes submitFeedback down to FeedbackSection', t => {
-  const npsCollect = wrapper.instance()
+  it('should pass submitFeedback down to FeedbackSection', () => {
+    const npsCollect = wrapper.instance()
 
-  npsCollect.handleScoreSelected(8)
-  wrapper.update()
-  const feedbackSection = wrapper.find(FeedbackSection)
+    npsCollect.handleScoreSelected(8)
+    wrapper.update()
+    const feedbackSection = wrapper.find(FeedbackSection)
 
-  t.is(npsCollect.submitFeedback, feedbackSection.prop('handleFeedbackSubmitted'))
-})
+    assert(npsCollect.submitFeedback === feedbackSection.prop('handleFeedbackSubmitted'))
+  })
 
-test.serial('sets score into local state when user selects a score', t => {
-  const npsCollect = wrapper.instance()
-  npsCollect.handleScoreSelected(8)
+  it('should set score into local state when user selects a score', () => {
+    const npsCollect = wrapper.instance()
+    npsCollect.handleScoreSelected(8)
 
-  t.is(wrapper.state('score'), 8)
-})
+    assert(wrapper.state('score') === 8)
+  })
 
-test.serial('sets feedback value into local state when user enters feedback', t => {
-  const npsCollect = wrapper.instance()
+  it('should set feedback value into local state when user enters feedback', () => {
+    const npsCollect = wrapper.instance()
 
-  npsCollect.handleFeedbackChanged({ target: { value: 'test feedback' } })
+    npsCollect.handleFeedbackChanged({ target: { value: 'test feedback' } })
 
-  t.is(wrapper.state('feedback'), 'test feedback')
-})
+    assert(wrapper.state('feedback') === 'test feedback')
+  })
 
-test.serial('sends score and feedback via the sendNPS data function', t => {
-  const npsCollect = wrapper.instance()
+  it('should send score and feedback via the sendNPS data function', () => {
+    const npsCollect = wrapper.instance()
 
-  npsCollect.handleScoreSelected(5)
-  npsCollect.handleFeedbackChanged({ target: { value: 'Try again' } })
-  npsCollect.submitFeedback()
+    npsCollect.handleScoreSelected(5)
+    npsCollect.handleFeedbackChanged({ target: { value: 'Try again' } })
+    npsCollect.submitFeedback()
 
-  t.true(data.sendNPS.calledWith(5, 'Try again', 'test-token'))
-})
+    assert(data.sendNPS.calledWith(5, 'Try again', 'test-token'))
+  })
 
-test('sets sending on state when submitting feedback', t => {
-  const npsCollect = wrapper.instance()
+  it('should set sending on state when submitting feedback', () => {
+    const npsCollect = wrapper.instance()
 
-  npsCollect.submitFeedback()
+    npsCollect.submitFeedback()
 
-  t.true(wrapper.state('sending'))
-})
+    assert(wrapper.state('sending'))
+  })
 
-test.serial('unsets sending and sets submitted state on request completion', async t => {
-  const npsCollect = wrapper.instance()
+  it('should unset sending and sets submitted state on request completion', async () => {
+    const npsCollect = wrapper.instance()
 
-  await npsCollect.submitFeedback()
-  wrapper.update()
+    await npsCollect.submitFeedback()
+    wrapper.update()
 
-  t.false(wrapper.state('sending'))
-  t.true(wrapper.state('submitted'))
-})
+    assert(wrapper.state('sending') === false)
+    assert(wrapper.state('submitted'))
+  })
 
-test.serial('renders a LoadingIndicator when sending', t => {
-  const npsCollect = wrapper.instance()
+  it('should render a LoadingIndicator when sending', () => {
+    const npsCollect = wrapper.instance()
 
-  npsCollect.submitFeedback()
-  wrapper.update()
+    npsCollect.submitFeedback()
+    wrapper.update()
 
-  t.truthy(wrapper.find(LoadingIndicator).length)
+    assert(wrapper.find(LoadingIndicator).length === 1)
+  })
 })

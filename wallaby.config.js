@@ -8,20 +8,10 @@ module.exports = wallaby => ({
     'source/**/__tests__/*.js'
   ],
 
-  testFramework: 'ava',
+  testFramework: 'mocha',
 
   compilers: {
-    '**/*.js': wallaby.compilers.babel({
-      presets: ['latest', 'stage-0', 'react'],
-      plugins: [
-        require('babel-plugin-espower/create')(
-          require('babel-core'), {
-            embedAst: true,
-            patterns: require('ava/lib/enhance-assert').PATTERNS
-          }
-        )
-      ]
-    })
+    '**/*.js': wallaby.compilers.babel()
   },
 
   env: {

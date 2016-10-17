@@ -1,38 +1,40 @@
 import React from 'react'
-import test from 'ava'
+import assert from 'power-assert'
 import { shallow } from 'enzyme'
 
 import FeedbackSection from '../'
 import FeedbackTextarea from '../../FeedbackTextarea'
 import SubmitButton from '../../SubmitButton'
 
-test('renders a FeedbackTextarea', t => {
-  const wrapper = shallow(<FeedbackSection handleFeedbackSubmitted={() => {}} />)
+describe('FeedbackSection display component', () => {
+  it('should render a FeedbackTextarea', () => {
+    const wrapper = shallow(<FeedbackSection handleFeedbackSubmitted={() => {}} />)
 
-  t.true(wrapper.find(FeedbackTextarea).length === 1)
-})
+    assert(wrapper.find(FeedbackTextarea).length === 1)
+  })
 
-test('renders a SubmitButton', t => {
-  const wrapper = shallow(<FeedbackSection handleFeedbackSubmitted={() => {}} />)
+  it('should render a SubmitButton', () => {
+    const wrapper = shallow(<FeedbackSection handleFeedbackSubmitted={() => {}} />)
 
-  t.true(wrapper.find(SubmitButton).length === 1)
-})
+    assert(wrapper.find(SubmitButton).length === 1)
+  })
 
-test('passes handleFeedbackSubmitted to SubmitButton', t => {
-  const feedbackSubmitted = () => {}
-  const wrapper = shallow(<FeedbackSection handleFeedbackSubmitted={feedbackSubmitted} />)
+  it('should pass handleFeedbackSubmitted to SubmitButton', () => {
+    const feedbackSubmitted = () => {}
+    const wrapper = shallow(<FeedbackSection handleFeedbackSubmitted={feedbackSubmitted} />)
 
-  t.is(wrapper.find(SubmitButton).prop('handleClicked'), feedbackSubmitted)
-})
+    assert(wrapper.find(SubmitButton).prop('handleClicked') === feedbackSubmitted)
+  })
 
-test('passes handleFeedbackChanged to FeedbackTextarea', t => {
-  const feedbackChanged = () => {}
-  const wrapper = shallow(
-    <FeedbackSection
-      handleFeedbackSubmitted={() => {}}
-      handleFeedbackChanged={feedbackChanged}
-    />
-  )
+  it('should pass handleFeedbackChanged to FeedbackTextarea', () => {
+    const feedbackChanged = () => {}
+    const wrapper = shallow(
+      <FeedbackSection
+        handleFeedbackSubmitted={() => {}}
+        handleFeedbackChanged={feedbackChanged}
+      />
+    )
 
-  t.is(wrapper.find(FeedbackTextarea).prop('handleChanged'), feedbackChanged)
+    assert(wrapper.find(FeedbackTextarea).prop('handleChanged') === feedbackChanged)
+  })
 })

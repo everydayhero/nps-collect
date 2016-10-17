@@ -1,21 +1,23 @@
 import React from 'react'
-import test from 'ava'
+import assert from 'power-assert'
 import { stub } from 'sinon'
 import { shallow } from 'enzyme'
 
 import FeedbackTextarea from '../'
 
-test('renders as a Textarea', t => {
-  const wrapper = shallow(<FeedbackTextarea handleChanged={() => {}} />)
+describe('FeedbackTextarea', () => {
+  it('should render as a Textarea', () => {
+    const wrapper = shallow(<FeedbackTextarea handleChanged={() => {}} />)
 
-  t.true(wrapper.is('textarea'))
-})
+    assert(wrapper.is('textarea'))
+  })
 
-test('calls handleChanged on input change', t => {
-  const changeStub = stub()
-  const wrapper = shallow(<FeedbackTextarea handleChanged={changeStub} />)
+  it('should call handleChanged on input change', () => {
+    const changeStub = stub()
+    const wrapper = shallow(<FeedbackTextarea handleChanged={changeStub} />)
 
-  wrapper.find('textarea').simulate('change', { target: { value: 'Test value' } })
+    wrapper.find('textarea').simulate('change', { target: { value: 'Test value' } })
 
-  t.true(changeStub.called)
+    assert(changeStub.called)
+  })
 })

@@ -1,52 +1,54 @@
 import React from 'react'
-import test from 'ava'
+import assert from 'power-assert'
 import { shallow, mount } from 'enzyme'
 import { stub } from 'sinon'
 
 import RatingButton from '../'
 
-let wrapper
+describe('RatingButton display component', () => {
+  let wrapper
 
-test.beforeEach(() => {
-  wrapper = shallow(<RatingButton score={9} handleSelected={() => {}} />)
-})
+  beforeEach(() => {
+    wrapper = shallow(<RatingButton score={9} handleSelected={() => {}} />)
+  })
 
-test('renders as a radio input inside a label', t => {
-  const label = wrapper.find('label')
-  t.true(label.length === 1, 'Must render a label element')
-  t.true(label.find('input[type="radio"]').length === 1,
-    'Label should contain a radio input')
-  t.is(label.text(), '9')
-})
+  it('should render as a radio input inside a label', () => {
+    const label = wrapper.find('label')
+    assert(label.length === 1, 'Must render a label element')
+    assert(label.find('input[type="radio"]').length === 1,
+      'Label should contain a radio input')
+    assert(label.text() === '9')
+  })
 
-test('renders the score as the value for the radio button', t => {
-  const radio = wrapper.find('input[type="radio"]')
-  t.is(radio.prop('value'), 9)
-})
+  it('should render the score as the value for the radio button', () => {
+    const radio = wrapper.find('input[type="radio"]')
+    assert(radio.prop('value') === 9)
+  })
 
-test('renders the score in the radio button id', t => {
-  const radio = wrapper.find('input[type="radio"]')
-  t.regex(radio.prop('id'), /9/)
-})
+  it('should render the score in the radio button id', () => {
+    const radio = wrapper.find('input[type="radio"]')
+    assert(radio.prop('id').match(/9/))
+  })
 
-test('names the radio button "npsScore"', t => {
-  const radio = wrapper.find('input[type="radio"]')
-  t.is(radio.prop('name'), 'npsScore')
-})
+  it('should name the radio button "npsScore"', () => {
+    const radio = wrapper.find('input[type="radio"]')
+    assert(radio.prop('name') === 'npsScore')
+  })
 
-test('calls handleSelected when radio button is clicked', t => {
-  const clickStub = stub()
-  wrapper = mount(<RatingButton score={6} handleSelected={clickStub} />)
-  const radio = wrapper.find('input[type="radio"]')
+  it('should call handleSelected when radio button is clicked', () => {
+    const clickStub = stub()
+    wrapper = mount(<RatingButton score={6} handleSelected={clickStub} />)
+    const radio = wrapper.find('input[type="radio"]')
 
-  radio.simulate('click')
-  t.true(clickStub.called)
-})
+    radio.simulate('click')
+    assert(clickStub.called)
+  })
 
-test('calls handleSelected with the score value', t => {
-  const clickStub = stub()
-  wrapper = mount(<RatingButton score={6} handleSelected={clickStub} />)
+  it('should call handleSelected with the score value', () => {
+    const clickStub = stub()
+    wrapper = mount(<RatingButton score={6} handleSelected={clickStub} />)
 
-  wrapper.find('input[type="radio"]').simulate('click')
-  t.true(clickStub.calledWith(wrapper.prop('score')))
+    wrapper.find('input[type="radio"]').simulate('click')
+    assert(clickStub.calledWith(wrapper.prop('score')))
+  })
 })

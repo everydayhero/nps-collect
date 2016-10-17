@@ -1,19 +1,21 @@
 import React from 'react'
-import test from 'ava'
+import assert from 'power-assert'
 import { shallow } from 'enzyme'
 
 import LoadingIndicator from '../'
 
-test('renders a spinner element and label by default', t => {
-  const wrapper = shallow(<LoadingIndicator />)
+describe('LoadingIndicator display component', () => {
+  it('should render a spinner element and label by default', () => {
+    const wrapper = shallow(<LoadingIndicator />)
 
-  t.truthy(wrapper.find('div.progress').length, 'Must contain spinner element')
-  t.regex(wrapper.text(), /Sending feedback/)
-})
+    assert(wrapper.find('div.progress').length, 'Must contain spinner element')
+    assert(wrapper.text().match(/Sending feedback/))
+  })
 
-test('removes spinner and renders Thank you message when complete', t => {
-  const wrapper = shallow(<LoadingIndicator complete />)
+  it('should remove spinner and render Thank you message when complete', () => {
+    const wrapper = shallow(<LoadingIndicator complete />)
 
-  t.falsy(wrapper.find('div.progress').length)
-  t.regex(wrapper.text(), /Thank you/)
+    assert(wrapper.find('div.progress').length === 0)
+    assert(wrapper.text().match(/Thank you/))
+  })
 })

@@ -1,31 +1,33 @@
 import React from 'react'
-import test from 'ava'
+import assert from 'power-assert'
 import { shallow, mount } from 'enzyme'
 import { stub } from 'sinon'
 
 import SubmitButton from '../'
 
-test('renders a submit button', t => {
-  const wrapper = shallow(<SubmitButton handleClicked={() => {}} />)
+describe('SubmitButton display component', () => {
+  it('should render a submit button', () => {
+    const wrapper = shallow(<SubmitButton handleClicked={() => {}} />)
 
-  t.true(wrapper.is('button[type="submit"]'))
-  t.is(wrapper.text(), 'Send Feedback')
-})
+    assert(wrapper.is('button[type="submit"]'))
+    assert(wrapper.text() === 'Send Feedback')
+  })
 
-test('calls handleClicked on click', t => {
-  const clickStub = stub()
-  const wrapper = shallow(<SubmitButton handleClicked={clickStub} />)
+  it('should call handleClicked on click', () => {
+    const clickStub = stub()
+    const wrapper = shallow(<SubmitButton handleClicked={clickStub} />)
 
-  wrapper.simulate('click', { preventDefault: () => {} })
+    wrapper.simulate('click', { preventDefault: () => {} })
 
-  t.true(clickStub.called)
-})
+    assert(clickStub.called)
+  })
 
-test('prevents the default event for a submit button', t => {
-  const wrapper = mount(<SubmitButton handleClicked={() => {}} />)
+  it('should prevent the default event for a submit button', () => {
+    const wrapper = mount(<SubmitButton handleClicked={() => {}} />)
 
-  const preventDefaultStub = stub()
-  wrapper.simulate('click', { preventDefault: preventDefaultStub })
+    const preventDefaultStub = stub()
+    wrapper.simulate('click', { preventDefault: preventDefaultStub })
 
-  t.true(preventDefaultStub.called)
+    assert(preventDefaultStub.called)
+  })
 })

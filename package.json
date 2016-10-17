@@ -6,8 +6,8 @@
   "scripts": {
     "start": "brb serve",
     "build": "brb build",
-    "test": "ava",
-    "test:watch": "ava --watch"
+    "test": "standard && mocha --opts test/mocha.opts source/**/*-test.js",
+    "test:watch": "mocha --opts test/mocha.opts --watch source/**/*-test.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/everydayhero/nps-collect#readme",
   "devDependencies": {
-    "ava": "^0.16.0",
     "babel-core": "^6.17.0",
     "babel-polyfill": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
@@ -31,14 +30,25 @@
     "jeffrey": "^0.0.10",
     "jsdom": "^9.6.0",
     "lodash": "^4.16.2",
+    "mocha": "^3.1.2",
+    "power-assert": "^1.4.1",
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
     "react-radial-list": "^1.0.1",
     "sinon": "^1.17.6",
-    "sinon-as-promised": "^4.0.2"
+    "sinon-as-promised": "^4.0.2",
+    "standard": "^8.4.0"
   },
   "standard": {
-    "parser": "babel-eslint"
+    "env": {
+      "mocha": true
+    },
+    "globals": [
+      "describe",
+      "it",
+      "beforeEach",
+      "afterEach"
+    ]
   },
   "babel": {
     "presets": [
@@ -46,16 +56,5 @@
       "stage-0",
       "react"
     ]
-  },
-  "ava": {
-    "files": [
-      "source/**/__tests__/*.js"
-    ],
-    "require": [
-      "babel-register",
-      "babel-polyfill",
-      "./test/dom"
-    ],
-    "babel": "inherit"
   }
 }
