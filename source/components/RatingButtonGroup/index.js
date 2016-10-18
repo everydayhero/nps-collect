@@ -4,7 +4,8 @@ import RadialList from 'react-radial-list'
 import RatingButton from '../RatingButton'
 
 const RatingButtonGroup = ({
-  handleScoreSelected
+  handleScoreSelected,
+  selectedItemIndex
 }) => (
   <div id='npsScoreGroup'>
     <RadialList
@@ -16,6 +17,8 @@ const RatingButtonGroup = ({
         />
       ))}
       offsetDegrees={107}
+      selectedItemIndex={selectedItemIndex}
+      collapsed={selectedItemIndex > -1}
     />
   </div>
 )

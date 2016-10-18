@@ -1,17 +1,20 @@
 import React from 'react'
 
 import { sendNPSScore, sendNPSFeedback } from '../../data'
+import images from '../../images'
 import RatingButtonGroup from '../RatingButtonGroup'
 import FeedbackSection from '../FeedbackSection'
 import LoadingIndicator from '../LoadingIndicator'
+import Preamble from '../Preamble'
 
 class NPSCollect extends React.Component {
   constructor () {
     super()
 
-    this.state = { sending: false, submitted: false }
+    this.state = { sending: false, submitted: false, score: -1 }
 
     this.submitFeedback = this.submitFeedback.bind(this)
+    this.submitScore = this.submitScore.bind(this)
     this.handleFeedbackChanged = this.handleFeedbackChanged.bind(this)
     this.handleScoreSelected = this.handleScoreSelected.bind(this)
   }
@@ -40,10 +43,6 @@ class NPSCollect extends React.Component {
 
   handleScoreSelected (score) {
     this.setState({ score })
-
-    if (score < 9) {
-      this.setState({ showFeedbackInput: true })
-    }
     this.submitScore()
   }
 
@@ -80,7 +79,10 @@ class NPSCollect extends React.Component {
 
           {sending && <LoadingIndicator complete={submitted} />}
 
-          <RatingButtonGroup handleScoreSelected={this.handleScoreSelected} />
+          <RatingButtonGroup
+            handleScoreSelected={this.handleScoreSelected}
+            selectedItemIndex={score}
+          />
 
           {showFeedbackInput &&
             <FeedbackSection

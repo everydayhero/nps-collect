@@ -35,7 +35,7 @@
     "power-assert": "^1.4.1",
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
-    "react-radial-list": "^1.0.1",
+    "react-radial-list": "^1.1.5",
     "sinon": "^1.17.6",
     "sinon-as-promised": "^4.0.2",
     "standard": "^8.4.0"
