@@ -52,25 +52,17 @@ class NPSCollect extends React.Component {
   }
 
   render () {
-    const { showFeedbackInput, sending, submitted } = this.state
+    const { sending, submitted, score } = this.state
+    const scoreSelected = score !== undefined
+    const showFeedbackInput = score > -1 && score < 9
 
     return (
       <form>
         <header>
-          <img className='everydayhero-logo' src='' alt='Everydayhero logo' />
+          <img {...images.logo} />
         </header>
 
-        <section id='nps-preamble'>
-          <img className='' src='' alt='Clap emoji' />
-
-          <p>
-            <strong>{'Thank you for donating with Everydayhero. You\'re awesome!'}</strong>
-          </p>
-
-          <p>
-            {'If you have a second, we\'d value your feedback'}
-          </p>
-        </section>
+        <Preamble scoreSelected={scoreSelected} />
 
         <section id='nps-inputs'>
           <p>
