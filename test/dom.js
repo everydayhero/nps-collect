@@ -1,4 +1,4 @@
-import jsdom from 'jsdom'
+const jsdom = require('jsdom')
 
 const dom = jsdom.jsdom('<!doctype html><html><head></head><body></body></html>')
 

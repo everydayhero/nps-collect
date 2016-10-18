@@ -6,8 +6,8 @@
   "scripts": {
     "start": "brb serve --client-config='./webpack.client.config'",
     "build": "brb build --client-config='./webpack.client.config'",
-    "test": "standard && mocha --opts test/mocha.opts source/**/*-test.js",
-    "test:watch": "mocha --opts test/mocha.opts --watch source/**/*-test.js"
+    "test": "brb test",
+    "test:watch": "brb test -- --watch"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/everydayhero/nps-collect#readme",
   "devDependencies": {
     "babel-core": "^6.17.0",
+    "babel-plugin-espower": "^2.3.1",
     "babel-polyfill": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
