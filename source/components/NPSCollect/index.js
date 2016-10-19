@@ -1,4 +1,5 @@
 import React from 'react'
+import css from 'cxsync'
 
 import { sendNPSScore, sendNPSFeedback } from '../../data'
 import images from '../../images'
@@ -6,6 +7,7 @@ import RatingButtonGroup from '../RatingButtonGroup'
 import FeedbackSection from '../FeedbackSection'
 import LoadingIndicator from '../LoadingIndicator'
 import Preamble from '../Preamble'
+import styles from './styles'
 
 class NPSCollect extends React.Component {
   constructor () {
@@ -57,8 +59,8 @@ class NPSCollect extends React.Component {
     const showFeedbackInput = score > -1 && score < 9
 
     return (
-      <form>
-        <header>
+      <form className={css(styles.form)}>
+        <header className={css(styles.header)}>
           <img {...images.logo} />
         </header>
 
