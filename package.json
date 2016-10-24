@@ -26,9 +26,11 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "boiler-room-builder": "^1.0.0-11",
-    "cxsync": "^1.0.1",
+    "cxsync": "^1.0.2",
+    "hero-ui": "^4.5.2",
     "jeffrey": "^0.0.10",
     "lodash": "^4.16.2",
+    "minimal.css": "^1.0.0",
     "react": "^15.3.2",
     "react-radial-list": "^1.2.0"
   },

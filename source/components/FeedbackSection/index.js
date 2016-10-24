@@ -1,25 +1,26 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
+import css from 'cxsync'
 
+import styles from './styles'
 import FeedbackTextarea from '../FeedbackTextarea'
 import SubmitButton from '../SubmitButton'
 
-class FeedbackSection extends React.Component {
-  render () {
-    const { handleFeedbackChanged, handleFeedbackSubmitted } = this.props
-
-    return (
-      <div>
-        <FeedbackTextarea handleChanged={handleFeedbackChanged} />
-
-        <SubmitButton handleClicked={handleFeedbackSubmitted} />
-      </div>
-    )
-  }
-}
+const FeedbackSection = ({
+  feedback,
+  handleFeedbackChanged,
+  handleFeedbackSubmitted
+}) => (
+  <div className={css(styles.section)}>
+    <p className={css(styles.question)}>{'Any particular reason you gave this feedback?'}</p>
+    <FeedbackTextarea text={feedback} handleChanged={handleFeedbackChanged} />
+    <SubmitButton handleClicked={handleFeedbackSubmitted} />
+  </div>
+)
 
 FeedbackSection.propTypes = {
-  handleFeedbackChanged: React.PropTypes.func,
-  handleFeedbackSubmitted: React.PropTypes.func.isRequired
+  feedback: PropTypes.string,
+  handleFeedbackChanged: PropTypes.func,
+  handleFeedbackSubmitted: PropTypes.func.isRequired
 }
 
 export default FeedbackSection

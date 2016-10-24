@@ -1,5 +1,8 @@
 import React from 'react'
 import css from 'cxsync'
+import { SlideVertical } from 'hero-ui/atoms/Transitions'
+import 'minimal.css'
+import './base.css'
 
 import { sendNPSScore, sendNPSFeedback } from '../../data'
 import images from '../../images'
@@ -48,42 +51,46 @@ class NPSCollect extends React.Component {
     this.submitScore()
   }
 
-  handleFeedbackChanged (event) {
-    const feedback = event.target.value
+  handleFeedbackChanged ({target: {value: feedback}}) {
     this.setState({ feedback })
   }
 
   render () {
-    const { sending, submitted, score } = this.state
-    const scoreSelected = score !== undefined
+    const { sending, submitted, score, feedback } = this.state
+    const scoreSelected = score !== -1
     const showFeedbackInput = score > -1 && score < 9
 
     return (
       <form className={css(styles.form)}>
         <header className={css(styles.header)}>
-          <img {...images.logo} />
+          <img {...images.logo} className={css(styles.headerImg)} />
         </header>
 
         <Preamble scoreSelected={scoreSelected} />
 
-        <section id='nps-inputs'>
-          <p>
-            <strong>{'How likely would you be to recommend us to your friends or family?'}</strong>
-          </p>
-
-          {sending && <LoadingIndicator complete={submitted} />}
+        <section>
+          <div className={css(styles.question)}>
+            <p>{!scoreSelected
+              ? 'How likely would you be to recommend us to your friends or family?'
+              : 'Thanks for your feedback!'}</p>
+          </div>
 
           <RatingButtonGroup
             handleScoreSelected={this.handleScoreSelected}
             selectedItemIndex={score}
           />
 
-          {showFeedbackInput &&
-            <FeedbackSection
-              handleFeedbackChanged={this.handleFeedbackChanged}
-              handleFeedbackSubmitted={this.submitFeedback}
-            />
-          }
+          <SlideVertical>
+            {showFeedbackInput &&
+              <FeedbackSection
+                key='feedback'
+                feedback={feedback}
+                handleFeedbackChanged={this.handleFeedbackChanged}
+                handleFeedbackSubmitted={this.submitFeedback}
+              />
+            }
+            {sending && <LoadingIndicator key='sending' complete={submitted} />}
+          </SlideVertical>
         </section>
       </form>
     )

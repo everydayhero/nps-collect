@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import css from 'cxsync'
 
 import styles from './styles'
 
 const RatingButton = ({
   score,
-  handleSelected
+  handleSelected,
+  selected
 }) => (
-  <label htmlFor={`npsScore_${score}`} className={css(styles.label)}>
+  <label htmlFor={`npsScore_${score}`} className={css(styles.label, selected && styles.selected)}>
     {score}
     <input
       type='radio'
@@ -15,14 +16,15 @@ const RatingButton = ({
       name='npsScore'
       value={score}
       className={css(styles.radio)}
-      onClick={() => handleSelected(score)}
+      onClick={() => handleSelected(selected ? -1 : score)}
     />
   </label>
 )
 
 RatingButton.propTypes = {
-  score: React.PropTypes.number.isRequired,
-  handleSelected: React.PropTypes.func.isRequired
+  score: PropTypes.number.isRequired,
+  handleSelected: PropTypes.func.isRequired,
+  selected: PropTypes.bool
 }
 
 export default RatingButton

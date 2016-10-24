@@ -1,29 +1,32 @@
 import React from 'react'
+import { SlideVertical, Fade } from 'hero-ui/atoms/Transitions'
+import css from 'cxsync'
 
+import styles from './styles'
 import images from '../../images'
 
 const Preamble = ({
   scoreSelected = false
 }) => {
   return (
-    <section id='nps-preamble'>
-      {scoreSelected
-        ? <img {...images.chat} />
-        : <img {...images.clap} />
-      }
+    <section>
+      <div className={css(styles.header)}>
+        <Fade>
+          {scoreSelected
+            ? <img {...images.chat} className={css(styles.headerImg)} key='chat' />
+            : <img {...images.clap} className={css(styles.headerImg)} key='clap' />
+          }
+        </Fade>
+      </div>
 
-      <p>
-        {scoreSelected
-          ? <strong>{'Thanks for your feedback!'}</strong>
-          : 'Thank you for donating with Everydayhero. You\'re awesome!'
+      <SlideVertical>
+        {!scoreSelected &&
+          <div key='thanks' className={css(styles.preamble)}>
+            <p>{'Thank you for donating with Everydayhero. You\'re awesome!'}</p>
+            <p>{'If you have a second, we\'d value your feedback.'}</p>
+          </div>
         }
-      </p>
-
-      {!scoreSelected &&
-        <p>
-          {'If you have a second, we\'d value your feedback.'}
-        </p>
-      }
+      </SlideVertical>
     </section>
   )
 }

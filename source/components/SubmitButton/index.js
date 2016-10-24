@@ -1,21 +1,25 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
+import css from 'cxsync'
+
+import styles from './styles'
 
 const SubmitButton = ({
   handleClicked
 }) => (
   <button
+    className={css(styles.button)}
     type='submit'
-    onClick={event => {
-      event.preventDefault()
+    onClick={({preventDefault}) => {
+      preventDefault()
       handleClicked()
     }}
   >
-    Send Feedback
+    Submit Response
   </button>
 )
 
 SubmitButton.propTypes = {
-  handleClicked: React.PropTypes.func.isRequired
+  handleClicked: PropTypes.func.isRequired
 }
 
 export default SubmitButton
