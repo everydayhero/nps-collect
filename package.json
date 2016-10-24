@@ -1,25 +1,65 @@
 {
-  "name": "nps-survey-prototype",
+  "name": "nps-collect",
   "version": "1.0.0",
   "description": "React prototype of NPS survey widgets for Everydayhero",
-  "main": "index.js",
+  "main": "source/client.js",
   "scripts": {
-    "start": "brb serve",
-    "build": "brb build"
+    "start": "brb serve --client-config='./webpack.client.config'",
+    "build": "brb build --client-config='./webpack.client.config'",
+    "test": "brb test",
+    "test:watch": "brb test -- --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/everydayhero/nps-survey-prototype.git"
+    "url": "git+https://github.com/everydayhero/nps-collect.git"
   },
   "author": "@howlingeverett",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/everydayhero/nps-survey-prototype/issues"
+    "url": "https://github.com/everydayhero/nps-collect/issues"
   },
-  "homepage": "https://github.com/everydayhero/nps-survey-prototype#readme",
-  "devDependencies": {
-    "ava": "^0.16.0",
+  "homepage": "https://github.com/everydayhero/nps-collect#readme",
+  "dependencies": {
+    "babel-core": "^6.17.0",
+    "babel-plugin-espower": "^2.3.1",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
     "boiler-room-builder": "^1.0.0-11",
-    "cxs": "^1.0.1"
+    "cxsync": "^1.0.2",
+    "hero-ui": "^4.5.2",
+    "jeffrey": "^0.0.10",
+    "lodash": "^4.16.2",
+    "minimal.css": "^1.0.0",
+    "react": "^15.3.2",
+    "react-radial-list": "^1.2.0"
+  },
+  "devDependencies": {
+    "enzyme": "^2.4.1",
+    "jsdom": "^9.6.0",
+    "mocha": "^3.1.2",
+    "power-assert": "^1.4.1",
+    "react-addons-test-utils": "^15.3.2",
+    "sinon": "^1.17.6",
+    "sinon-as-promised": "^4.0.2",
+    "standard": "^8.4.0"
+  },
+  "standard": {
+    "env": {
+      "mocha": true
+    },
+    "globals": [
+      "describe",
+      "it",
+      "beforeEach",
+      "afterEach"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "latest",
+      "stage-0",
+      "react"
+    ]
   }
 }

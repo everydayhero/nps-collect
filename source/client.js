@@ -1,8 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import NPSForm from './components/NPSForm'
+import NPSCollect from './components/NPSCollect'
 
 const mount = document.getElementById('mount')
 
-render(<NPSForm />, mount)
+render(<NPSCollect />, mount)

@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
+
+* {
+  font-family: 'Lato';
+  box-sizing: border-box;
+}
