@@ -2,9 +2,10 @@ import React, { PropTypes } from 'react'
 import RadialList from 'react-radial-list'
 import merge from 'lodash/merge'
 import { SlideVertical } from 'hero-ui/atoms/Transitions'
-import css from 'cxsync'
+import { css } from 'aphrodite'
 
 import styles from './styles'
+import listStyles from './listStyles'
 import RatingButton from '../RatingButton'
 
 const npsRange = new Array(11).fill().map((_, i) => i)
@@ -27,7 +28,7 @@ const RatingButtonGroup = ({
       ))}
       selectedItemIndex={selectedItemIndex}
       collapsed={selectedItemIndex > -1}
-      listStyles={merge({}, styles.radialList, (selectedItemIndex > -1) && styles.collapsed)}
+      listStyles={merge({}, listStyles.radialList, (selectedItemIndex > -1) && listStyles.collapsed)}
     />
     <SlideVertical>
       {selectedItemIndex === -1 &&

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import css from 'cxsync'
+import { css } from 'aphrodite'
 
 import styles from './styles'
 import FeedbackTextarea from '../FeedbackTextarea'

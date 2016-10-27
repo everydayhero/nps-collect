@@ -1,10 +1,11 @@
 import { colors, fade, transition } from '../../traits'
+import { StyleSheet } from 'aphrodite'
 
 const DIAMETER = 38
 
 const fauxBorder = (color, alpha) => ({ boxShadow: `0 0 0 3px ${fade(color, alpha)}` })
 
-export default {
+export default StyleSheet.create({
   radio: {
     position: 'absolute',
     clip: 'rect(0,0,0,0)'
@@ -31,4 +32,4 @@ export default {
     ...fauxBorder('blue', 0.3),
     ':hover': fauxBorder('blue', 0.9)
   }
-}
+})

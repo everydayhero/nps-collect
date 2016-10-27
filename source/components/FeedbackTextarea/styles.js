@@ -1,6 +1,7 @@
 import { colors } from '../../traits'
+import { StyleSheet } from 'aphrodite'
 
-export default {
+export default StyleSheet.create({
   textarea: {
     width: '100%',
     height: 60,
@@ -18,4 +19,4 @@ export default {
       outline: 0
     }
   }
-}
+})

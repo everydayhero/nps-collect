@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/everydayhero/nps-collect#readme",
   "dependencies": {
+    "aphrodite": "^1.0.0",
     "babel-core": "^6.17.0",
     "babel-plugin-espower": "^2.3.1",
     "babel-polyfill": "^6.16.0",

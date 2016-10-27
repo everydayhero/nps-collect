@@ -1,6 +1,7 @@
 import { colors, fade } from '../../traits'
+import { StyleSheet } from 'aphrodite'
 
-export default {
+export default StyleSheet.create({
   button: {
     appearance: 'none',
     padding: '0 44px',
@@ -19,4 +20,4 @@ export default {
       boxShadow: `inset 0 12px 32px ${fade('white', 0.3)}, 0 1px 3px ${fade('grey', 0.3)}`
     }
   }
-}
+})

@@ -1,6 +1,7 @@
 import { colors } from '../../traits'
+import { StyleSheet } from 'aphrodite'
 
-export default {
+export default StyleSheet.create({
   header: {
     position: 'relative',
     width: 100,
@@ -26,4 +27,4 @@ export default {
       color: '#888'
     }
   }
-}
+})

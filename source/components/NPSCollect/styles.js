@@ -1,6 +1,7 @@
+import { StyleSheet } from 'aphrodite'
 import { colors } from '../../traits'
 
-export default {
+export default StyleSheet.create({
   form: {
     padding: '20px 0',
     textAlign: 'center',
@@ -18,4 +19,4 @@ export default {
     fontSize: 20,
     marginBottom: 8
   }
-}
+})

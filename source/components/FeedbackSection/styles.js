@@ -1,6 +1,7 @@
 import { colors } from '../../traits'
+import { StyleSheet } from 'aphrodite'
 
-export default {
+export default StyleSheet.create({
   section: {
     maxWidth: 440,
     margin: '0 auto',
@@ -14,4 +15,4 @@ export default {
     fontSize: 20,
     marginBottom: 8
   }
-}
+})
