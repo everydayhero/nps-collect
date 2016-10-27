@@ -1,4 +1,5 @@
 import { colors } from '../../traits'
+import { select } from 'glamor'
 
 export default {
   header: {
@@ -18,12 +19,12 @@ export default {
     height: 90,
     fontSize: 19,
     lineHeight: 1.2,
-    ' p': {
+    ...select(' p', {
       marginBottom: 12
-    },
-    ' p + p': {
+    }),
+    ...select(' p + p', {
       fontSize: 16,
       color: '#888'
-    }
+    })
   }
 }

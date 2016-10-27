@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import RadialList from 'react-radial-list'
 import merge from 'lodash/merge'
 import { SlideVertical } from 'hero-ui/atoms/Transitions'
-import css from 'cxsync'
+import { style as css } from 'glamor'
 
 import styles from './styles'
 import RatingButton from '../RatingButton'

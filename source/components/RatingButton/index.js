@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import css from 'cxsync'
+import { style as css } from 'glamor'
 
 import styles from './styles'
 

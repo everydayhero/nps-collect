@@ -1,5 +1,5 @@
 import React from 'react'
-import css from 'cxsync'
+import { style as css } from 'glamor'
 import { SlideVertical } from 'hero-ui/atoms/Transitions'
 import 'minimal.css'
 import './base.css'

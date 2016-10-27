@@ -1,6 +1,6 @@
 import React from 'react'
 import { SlideVertical, Fade } from 'hero-ui/atoms/Transitions'
-import css from 'cxsync'
+import { style as css } from 'glamor'
 
 import styles from './styles'
 import images from '../../images'
