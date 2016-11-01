@@ -11,24 +11,7 @@ steps:
   - type: "waiter"
 
   - name: ":pill:"
-    command: "bin/buildkite bin/ci run npm test"
+    command: "bin/buildkite bin/ci run yarn test"
     agents:
       queue: elastic
 
-  - type: "waiter"
-
-  - name: ":rocket: Publish"
-    type: "manual"
-    branches: "master"
-
-  - name: ":speech_balloon:"
-    command: "bin/buildkite bin/ci announce releasing-production"
-    branches: "master"
-    agents:
-      queue: elastic
-
-  - name: ":speech_balloon: Publish Treehorn"
-    command: "bin/buildkite bin/ci create-deploy-candidate production"
-    branches: "master"
-    agents:
-      queue: elastic
