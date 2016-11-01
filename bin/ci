@@ -1,0 +1,13 @@
+#!/bin/bash
+# ci submodule stub -- ensures the pipeline submodule is checked out correctly then runs it
+
+set -euo pipefail
+
+PIPELINE=".pipeline"
+
+git submodule sync --quiet --recursive -- "${PIPELINE}"
+git submodule update --quiet --init --recursive -- "${PIPELINE}"
+
+pipeline_dir="$(realpath "$(dirname "$0")/../${PIPELINE}")"
+
+exec "${pipeline_dir}/ci" "$@"

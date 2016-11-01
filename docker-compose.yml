@@ -1,0 +1,11 @@
+version: '2'
+services:
+  tests:
+    image: "${DOCKER_REPOSITORY}:${COMMIT}"
+    environment:
+      - NPM_USER
+      - NPM_PASS
+      - NPM_EMAIL
+      - AWS_KEY
+      - AWS_SECRET
+      - BUILDKITE_MESSAGE
