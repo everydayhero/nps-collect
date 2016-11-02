@@ -21,7 +21,6 @@ describe('data sending module', () => {
   it('should call jeffrey.init with tracking token', () => {
     sendNPSScore('test-page', 'test-user', 3)
 
-    console.log(jeffrey.init.firstCall.args)
     assert(jeffrey.init.calledWith('test-token'))
   })
 

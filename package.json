@@ -7,7 +7,7 @@
     "start": "brb serve --client-config='./webpack.client.config'",
     "build": "brb build --client-config='./webpack.client.config'",
     "test": "brb test",
-    "test:watch": "brb test -- --watch"
+    "test:watch": "brb test --watch"
   },
   "repository": {
     "type": "git",
@@ -26,12 +26,12 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "boiler-room-builder": "^1.0.0-11",
-    "cxsync": "^1.0.7",
+    "cxsync": "^1.0.9",
     "hero-ui": "^4.5.2",
     "jeffrey": "^0.0.10",
     "lodash": "^4.16.2",
     "minimal.css": "^1.0.0",
-    "react": "^15.3.2",
+    "react": "^0.14.8",
     "react-radial-list": "^1.3.0"
   },
   "devDependencies": {

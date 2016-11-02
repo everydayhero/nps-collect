@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -u
+
+if grep -q '[X]{3}' $0; then
+  echo "I'm an unconfigured script at $0, configure me please"
+  exit 1
+fi
+
+export ANNOUNCE_ROBOT_SLACK_CHANNEL="consumer"
+export ANNOUNCE_EMAIL_FROM="edh-dev@everydayhero.com"
+export ANNOUNCE_EMAIL_FROM_NAME="Everydayhero"
+export ANNOUNCE_EMAIL_TO=""
+export APP="${APP:-nps-collect}"
+export BRANCH="${BUILDKITE_BRANCH}"
+export BUILD_NUMBER="${BUILDKITE_BUILD_NUMBER}"
+export BUILD_MESSAGE="${BUILDKITE_MESSAGE}"
+export BUILD_URL="${BUILDKITE_BUILD_URL}"
+export COMMIT="${BUILDKITE_COMMIT}"
+export HEALTH_ENDPOINT='https://nps-collect.everydayhero.io/health'
+export JOB_ID="${BUILDKITE_JOB_ID}"
+export PUSH_TO_QUAY=false
+
+"$@"

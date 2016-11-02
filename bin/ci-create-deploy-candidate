@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -euo pipefail
+
+DEPLOY_ENV="$1" && shift
+DEPLOY_URL="https://api.buildkite.com/v2/organizations/everyday-hero/pipelines/nps-collect-${DEPLOY_ENV}/builds"
+
+main() {
+  author_name=$(git --no-pager show -s --format="%an" "${COMMIT}")
+  author_email=$(git --no-pager show -s --format="%ae" "${COMMIT}")
+  url="${DEPLOY_URL}"
+  message=$(git --no-pager show -s --format="%h - %s")
+
+curl -sSL -H "Authorization: Bearer $BUILDKITE_API_TOKEN" -X POST "${DEPLOY_URL}" -d @/dev/stdin <<JSON
+{
+  "commit": "$COMMIT",
+  "branch": "$BRANCH",
+  "message": "$message",
+  "author": {
+    "name": "$author_name",
+    "email": "$author_email"
+  }
+}
+JSON
+}
+
+. "$BIN_DIR/ci-subr"

@@ -1,0 +1,15 @@
+---
+steps:
+  - name: ":docker:"
+    command: "bin/buildkite bin/ci build"
+    agents:
+      queue: native
+      docker: builder
+
+  - type: "waiter"
+
+  - name: ":pill:"
+    command: "bin/buildkite bin/ci run yarn test"
+    agents:
+      queue: elastic
+

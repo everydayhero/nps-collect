@@ -4,7 +4,8 @@ import css from 'cxsync'
 import styles from './styles'
 
 const SubmitButton = ({
-  handleClicked
+  handleClicked,
+  text = 'Send Feedback'
 }) => (
   <button
     className={css(styles.button)}
@@ -14,7 +15,7 @@ const SubmitButton = ({
       handleClicked()
     }}
   >
-    Submit Response
+    {text}
   </button>
 )
 

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euo pipefail
+
+(cd .pipeline/ && git fetch && git reset --hard origin/master)
+git commit -m "Update build-pipeline" -- .pipeline
