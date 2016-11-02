@@ -7,12 +7,6 @@ export default {
     height: 100,
     margin: '0 auto 20px'
   },
-  headerImg: {
-    width: '100%',
-    height: '100%',
-    left: 0,
-    position: 'absolute'
-  },
   preamble: {
     color: colors.grey,
     height: 90,

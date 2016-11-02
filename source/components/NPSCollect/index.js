@@ -66,7 +66,7 @@ class NPSCollect extends React.Component {
           <img {...images.logo} className={css(styles.headerImg)} />
         </header>
 
-        <Preamble scoreSelected={scoreSelected} />
+        <Preamble score={score} />
 
         <section>
           <div className={css(styles.question)}>

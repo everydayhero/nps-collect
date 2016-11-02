@@ -139,13 +139,4 @@ describe('NPSCollect container component', () => {
     assert(wrapper.state('sending') === false)
     assert(wrapper.state('submitted'))
   })
-
-  it('should render a LoadingIndicator when sending', () => {
-    const npsCollect = wrapper.instance()
-
-    npsCollect.submitFeedback()
-    wrapper.update()
-
-    assert(wrapper.find(LoadingIndicator).length === 1)
-  })
 })
