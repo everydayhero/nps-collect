@@ -1,5 +1,3 @@
-import { colors } from '../../traits'
-
 export default {
   headerImg: {
     width: '100%',

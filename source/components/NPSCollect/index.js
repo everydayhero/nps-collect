@@ -16,7 +16,7 @@ class NPSCollect extends React.Component {
   constructor () {
     super()
 
-    this.state = { sending: false, submitted: false, score: -1 }
+    this.state = { sending: false, score: -1 }
 
     this.submitFeedback = this.submitFeedback.bind(this)
     this.submitScore = this.submitScore.bind(this)
@@ -42,7 +42,8 @@ class NPSCollect extends React.Component {
     this.setState({ sending: true })
 
     return sendNPSFeedback(pageId, userId, feedback).then(() => {
-      this.setState({ submitted: true, sending: false })
+      console.log('Sent')
+      this.setState({ sending: false })
     })
   }
 
@@ -56,7 +57,7 @@ class NPSCollect extends React.Component {
   }
 
   render () {
-    const { sending, submitted, score, feedback } = this.state
+    const { sending, score, feedback } = this.state
     const scoreSelected = score !== -1
     const showFeedbackInput = score > -1 && score < 9
 
@@ -85,11 +86,12 @@ class NPSCollect extends React.Component {
               <FeedbackSection
                 key='feedback'
                 feedback={feedback}
+                submitDisabled={!sending}
+                submitText='Send Feedback'
                 handleFeedbackChanged={this.handleFeedbackChanged}
                 handleFeedbackSubmitted={this.submitFeedback}
               />
             }
-            {sending && <LoadingIndicator key='sending' complete={submitted} />}
           </SlideVertical>
         </section>
       </form>
