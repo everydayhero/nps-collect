@@ -5,9 +5,23 @@ import css from 'cxsync'
 import styles from './styles'
 import images from '../../images'
 
+const scoreSelectedMessage = () => (
+  <div key='thanks' className={css(styles.preamble)}>
+    <p>Thanks for your feedback!</p>
+  </div>
+)
+
+const scoreNotSelectedMessage = () => (
+  <div key='thanks' className={css(styles.preamble)}>
+    <p>{'Thank you for donating with Everydayhero. You\'re awesome!'}</p>
+    <p>{'If you have a second, we\'d value your feedback.'}</p>
+  </div>
+)
+
 const Preamble = ({
   scoreSelected = false
 }) => {
+  console.log('[', scoreSelected, ']')
   return (
     <section>
       <div className={css(styles.header)}>
@@ -20,12 +34,7 @@ const Preamble = ({
       </div>
 
       <SlideVertical>
-        {!scoreSelected &&
-          <div key='thanks' className={css(styles.preamble)}>
-            <p>{'Thank you for donating with Everydayhero. You\'re awesome!'}</p>
-            <p>{'If you have a second, we\'d value your feedback.'}</p>
-          </div>
-        }
+        {scoreSelected ? scoreSelectedMessage() : scoreNotSelectedMessage() }
       </SlideVertical>
     </section>
   )
