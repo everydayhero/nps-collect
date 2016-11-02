@@ -16,7 +16,6 @@ export const hasStyle = (classNameKeys, key, value) => {
 }
 
 export const cxsClassNames = classNames => {
-  console.log('[', classNames, ']')
   return classNames.split(' ').filter(cn => cn.includes('cxs-'))
 }
 

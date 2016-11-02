@@ -23,7 +23,6 @@ describe('Preamble display component', () => {
   })
 
   it('should render request for feedback text if score is not selected', () => {
-    console.log('mount the thing')
     const wrapper = mount(<Preamble />)
 
     assert(wrapper.text() ===
@@ -34,7 +33,6 @@ describe('Preamble display component', () => {
   it('should render thanks for feedback if score selected', () => {
     const wrapper = mount(<Preamble scoreSelected />)
 
-    console.log(wrapper.text())
     assert(wrapper.text() === 'Thanks for your feedback!')
   })
 })

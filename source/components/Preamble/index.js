@@ -21,7 +21,6 @@ const scoreNotSelectedMessage = () => (
 const Preamble = ({
   scoreSelected = false
 }) => {
-  console.log('[', scoreSelected, ']')
   return (
     <section>
       <div className={css(styles.header)}>
