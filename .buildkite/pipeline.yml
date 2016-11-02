@@ -1,7 +1,5 @@
 ---
 steps:
-  - type: "waiter"
-
   - name: ":docker:"
     command: "bin/buildkite bin/ci build"
     agents:
