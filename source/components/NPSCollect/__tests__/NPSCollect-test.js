@@ -130,13 +130,23 @@ describe('NPSCollect container component', () => {
     assert(wrapper.state('sending'))
   })
 
-  it('should unset sending and sets submitted state on request completion', async () => {
+  it('should unset sending and sets submittedFeedback state on successful request completion', async () => {
     const npsCollect = wrapper.instance()
 
     await npsCollect.submitFeedback()
     wrapper.update()
 
     assert(wrapper.state('sending') === false)
-    assert(wrapper.state('submitted'))
+    assert(wrapper.state('submittedFeedback'))
+  })
+
+  it('should unset sending and sets submittedScore state on successful request completion', async () => {
+    const npsCollect = wrapper.instance()
+
+    await npsCollect.submitScore()
+    wrapper.update()
+
+    assert(wrapper.state('sending') === false)
+    assert(wrapper.state('submittedScore'))
   })
 })

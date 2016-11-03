@@ -11,8 +11,8 @@ const SubmitButton = ({
   <button
     className={css(styles.button)}
     type='submit'
-    onClick={({preventDefault}) => {
-      preventDefault()
+    onClick={(e) => {
+      e.preventDefault()
       handleClicked()
     }}
     disabled={disabled}

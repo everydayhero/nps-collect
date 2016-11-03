@@ -5,12 +5,6 @@ import css from 'cxsync'
 import styles from './styles'
 import FeedbackIcon from '../FeedbackIcon'
 
-const scoreComplete = () => (
-  <div key='thanks' className={css(styles.preamble)}>
-    <p>Thanks for your feedback!</p>
-  </div>
-)
-
 const scoreShowFeedback = () => (
   <div key='thanks' className={css(styles.preamble)}>
     <p>{'Thank you for donating with Everydayhero. You\'re awesome!'}</p>
@@ -18,39 +12,41 @@ const scoreShowFeedback = () => (
   </div>
 )
 
-const preambleIcon = (score) => {
-  if (score < 0) {
-    return 'clap'
-  } else if (score > 8) {
+const preambleIcon = (score, completed) => {
+  if (completed || score > 8) {
     return 'heart'
+  } else if (score < 0) {
+    return 'clap'
   }
 
   return 'chat'
 }
 
 const Preamble = ({
-  score = -1
+  score = -1,
+  completed = false
 }) => {
-  const icon = preambleIcon(score)
+  const icon = preambleIcon(score, completed)
   return (
     <section>
       <div className={css(styles.header)}>
         <Fade>
-          <div>
+          <div key={icon}>
             <FeedbackIcon icon={icon} />
           </div>
         </Fade>
       </div>
 
       <SlideVertical>
-        {score >= 0 ? scoreComplete() : scoreShowFeedback() }
+        {score < 0 && scoreShowFeedback() }
       </SlideVertical>
     </section>
   )
 }
 
 Preamble.propTypes = {
-  score: React.PropTypes.number
+  score: React.PropTypes.number,
+  completed: React.PropTypes.bool
 }
 
 export default Preamble
