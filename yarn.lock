@@ -4761,7 +4761,7 @@ react-prefixer@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/react-prefixer/-/react-prefixer-1.1.4.tgz#e32a01c8c0dbb0f918ccd428a94932a943abf24b"
 
-react-radial-list@^1.3.1:
+react-radial-list@1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-radial-list/-/react-radial-list-1.3.1.tgz#9778347af1b078b326bdad433459885bcbe82a6f"
   dependencies:
