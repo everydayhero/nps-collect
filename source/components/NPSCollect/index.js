@@ -41,7 +41,7 @@ class NPSCollect extends React.Component {
 
     this.setState({ sending: true })
 
-    return sendNPSScore(pageId, userId, score).then(() => {
+    return sendNPSScore({ pageId, userId, score }).then(() => {
       this.setState({ sending: false, submittedScore: true })
     }).catch(this.submitError)
   }
@@ -52,7 +52,7 @@ class NPSCollect extends React.Component {
 
     this.setState({ sending: true })
 
-    return sendNPSFeedback(pageId, userId, feedback).then(() => {
+    return sendNPSFeedback({ pageId, userId, feedback }).then(() => {
       this.setState({ sending: false, submittedFeedback: true })
     }).catch(this.submitError)
   }

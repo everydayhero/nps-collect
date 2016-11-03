@@ -4,22 +4,18 @@ if (!process.env.JEFFREY_TOKEN) {
   console.warn('No Jeffrey tracking token configured, this form goes nowhere.')
 }
 
-const sendNPS = (action, params) => {
+const sendNPS = (event) => (payload) => {
   jeffrey.init(process.env.JEFFREY_TOKEN)
 
   return new Promise((resolve) => {
     jeffrey.trackAction(
-      action,
-      params,
+      event,
+      payload,
       resolve
     )
   })
 }
 
-export const sendNPSScore = (pageId, userId, score) => {
-  return sendNPS('supporter.nps.send-score', { pageId, userId, score })
-}
+export const sendNPSScore = sendNPS('NPS Submit Score')
+export const sendNPSFeedback = sendNPS('NPS Submit Feedback')
 
-export const sendNPSFeedback = (pageId, userId, feedback) => {
-  return sendNPS('supporter.nps.send-feedback', { pageId, userId, feedback })
-}

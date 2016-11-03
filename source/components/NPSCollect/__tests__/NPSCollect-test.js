@@ -109,7 +109,8 @@ describe('NPSCollect container component', () => {
     npsCollect.handleFeedbackChanged({ target: { value: 'Try again' } })
     npsCollect.submitFeedback()
 
-    assert(data.sendNPSFeedback.calledWith('test-page', 'test-user', 'Try again'))
+    assert(data.sendNPSFeedback.calledWith(
+      { pageId: 'test-page', userId: 'test-user', feedback: 'Try again' }))
   })
 
   it('should send score the sendNPSScore data function', () => {
@@ -119,7 +120,7 @@ describe('NPSCollect container component', () => {
     npsCollect.handleFeedbackChanged({ target: { value: 'Try again' } })
     npsCollect.submitFeedback()
 
-    assert(data.sendNPSScore.calledWith('test-page', 'test-user', 5))
+    assert(data.sendNPSScore.calledWith({ pageId: 'test-page', userId: 'test-user', score: 5 }))
   })
 
   it('should set sending on state when submitting feedback', () => {
