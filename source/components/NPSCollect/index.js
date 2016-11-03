@@ -20,7 +20,8 @@ class NPSCollect extends React.Component {
       sending: false,
       submittedScore: false,
       submittedFeedback: false,
-      score: -1
+      score: -1,
+      errored: false
     }
 
     this.submitFeedback = this.submitFeedback.bind(this)
@@ -54,7 +55,10 @@ class NPSCollect extends React.Component {
 
     return sendNPSFeedback({ pageId, userId, feedback }).then(() => {
       this.setState({ sending: false, submittedFeedback: true })
-    }).catch(this.submitError)
+    }).catch((err) => {
+      this.setState({ sending: false, submittedFeedback: true })
+      this.submitError(err)
+    })
   }
 
   handleScoreSelected (score) {
@@ -73,7 +77,7 @@ class NPSCollect extends React.Component {
       feedback,
       submittedFeedback,
       submittedScore } = this.state
-    const { homeAddress } = this.props
+    const { homepage } = this.props
     const scoreSelected = score !== -1
     const showFeedbackInput = score > -1 && score < 9 && !submittedFeedback
     const submitButtonText = (!sending && !submittedFeedback)
@@ -82,7 +86,7 @@ class NPSCollect extends React.Component {
     return (
       <form className={css(styles.form)}>
         <header className={css(styles.header)}>
-          <a href={homeAddress}>
+          <a href={homepage}>
             <img {...images.logo} className={css(styles.headerImg)} />
           </a>
         </header>
@@ -122,7 +126,7 @@ class NPSCollect extends React.Component {
 NPSCollect.propTypes = {
   pageId: React.PropTypes.string.isRequired,
   userId: React.PropTypes.string.isRequired,
-  homeAddress: React.PropTypes.string.isRequired
+  homepage: React.PropTypes.string.isRequired
 }
 
 export default NPSCollect

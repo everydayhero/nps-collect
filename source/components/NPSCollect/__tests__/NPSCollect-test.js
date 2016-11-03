@@ -18,6 +18,7 @@ describe('NPSCollect container component', () => {
       <NPSCollect
         pageId='test-page'
         userId='test-user'
+        homepage='http://www.everydayhero.com'
       />
     )
     sinon.stub(data, 'sendNPSScore').resolves()
@@ -149,5 +150,35 @@ describe('NPSCollect container component', () => {
 
     assert(wrapper.state('sending') === false)
     assert(wrapper.state('submittedScore'))
+  })
+})
+
+describe('NPSContainerComponent error cases', () => {
+  let wrapper
+
+  beforeEach(() => {
+    wrapper = shallow(
+      <NPSCollect
+        pageId='test-page'
+        userId='test-user'
+        homepage='http://www.everydayhero.com'
+      />
+    )
+    sinon.stub(data, 'sendNPSFeedback').resolves(() => {
+      throw new Error('Just Nothing')
+    })
+  })
+
+  afterEach(() => {
+    data.sendNPSFeedback.restore()
+  })
+
+  it('should still mark feedback submitted on error', async () => {
+    const npsCollect = wrapper.instance()
+
+    await npsCollect.submitFeedback()
+    wrapper.update()
+
+    assert(wrapper.state('submittedFeedback'))
   })
 })
