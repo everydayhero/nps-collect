@@ -1,5 +1,6 @@
 import clap from '../assets/clap.svg'
 import chat from '../assets/chat.svg'
+import heart from '../assets/heart.svg'
 import logo from '../assets/logo.svg'
 
 export default {
@@ -12,6 +13,11 @@ export default {
     src: chat,
     alt: 'Chat emoji',
     className: 'icon-chat'
+  },
+  heart: {
+    src: heart,
+    alt: 'Heart emoji',
+    className: 'icon-heart'
   },
   logo: {
     src: logo,

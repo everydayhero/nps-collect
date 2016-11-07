@@ -4,7 +4,8 @@ export default {
   form: {
     padding: '20px 0',
     textAlign: 'center',
-    margin: '0 auto'
+    margin: '0 auto',
+    maxWidth: '30em'
   },
   header: {
     marginBottom: 20

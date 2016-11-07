@@ -18,6 +18,7 @@ describe('NPSCollect container component', () => {
       <NPSCollect
         pageId='test-page'
         userId='test-user'
+        homepage='http://www.everydayhero.com'
       />
     )
     sinon.stub(data, 'sendNPSScore').resolves()
@@ -109,7 +110,8 @@ describe('NPSCollect container component', () => {
     npsCollect.handleFeedbackChanged({ target: { value: 'Try again' } })
     npsCollect.submitFeedback()
 
-    assert(data.sendNPSFeedback.calledWith('test-page', 'test-user', 'Try again'))
+    assert(data.sendNPSFeedback.calledWith(
+      { pageId: 'test-page', userId: 'test-user', feedback: 'Try again' }))
   })
 
   it('should send score the sendNPSScore data function', () => {
@@ -119,7 +121,7 @@ describe('NPSCollect container component', () => {
     npsCollect.handleFeedbackChanged({ target: { value: 'Try again' } })
     npsCollect.submitFeedback()
 
-    assert(data.sendNPSScore.calledWith('test-page', 'test-user', 5))
+    assert(data.sendNPSScore.calledWith({ pageId: 'test-page', userId: 'test-user', score: 5 }))
   })
 
   it('should set sending on state when submitting feedback', () => {
@@ -130,22 +132,53 @@ describe('NPSCollect container component', () => {
     assert(wrapper.state('sending'))
   })
 
-  it('should unset sending and sets submitted state on request completion', async () => {
+  it('should unset sending and sets submittedFeedback state on successful request completion', async () => {
     const npsCollect = wrapper.instance()
 
     await npsCollect.submitFeedback()
     wrapper.update()
 
     assert(wrapper.state('sending') === false)
-    assert(wrapper.state('submitted'))
+    assert(wrapper.state('submittedFeedback'))
   })
 
-  it('should render a LoadingIndicator when sending', () => {
+  it('should unset sending and sets submittedScore state on successful request completion', async () => {
     const npsCollect = wrapper.instance()
 
-    npsCollect.submitFeedback()
+    await npsCollect.submitScore()
     wrapper.update()
 
-    assert(wrapper.find(LoadingIndicator).length === 1)
+    assert(wrapper.state('sending') === false)
+    assert(wrapper.state('submittedScore'))
+  })
+})
+
+describe('NPSContainerComponent error cases', () => {
+  let wrapper
+
+  beforeEach(() => {
+    wrapper = shallow(
+      <NPSCollect
+        pageId='test-page'
+        userId='test-user'
+        homepage='http://www.everydayhero.com'
+      />
+    )
+    sinon.stub(data, 'sendNPSFeedback').resolves(() => {
+      throw new Error('Just Nothing')
+    })
+  })
+
+  afterEach(() => {
+    data.sendNPSFeedback.restore()
+  })
+
+  it('should still mark feedback submitted on error', async () => {
+    const npsCollect = wrapper.instance()
+
+    await npsCollect.submitFeedback()
+    wrapper.update()
+
+    assert(wrapper.state('submittedFeedback'))
   })
 })

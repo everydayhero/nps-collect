@@ -16,12 +16,24 @@ class NPSCollect extends React.Component {
   constructor () {
     super()
 
-    this.state = { sending: false, submitted: false, score: -1 }
+    this.state = {
+      sending: false,
+      submittedScore: false,
+      submittedFeedback: false,
+      score: -1,
+      errored: false
+    }
 
     this.submitFeedback = this.submitFeedback.bind(this)
     this.submitScore = this.submitScore.bind(this)
+    this.submitError = this.submitError.bind(this)
     this.handleFeedbackChanged = this.handleFeedbackChanged.bind(this)
     this.handleScoreSelected = this.handleScoreSelected.bind(this)
+  }
+
+  submitError (err) {
+    console.error('Failed to submit feedback', err.message)
+    this.setState({ sending: false, errored: true })
   }
 
   submitScore () {
@@ -30,9 +42,9 @@ class NPSCollect extends React.Component {
 
     this.setState({ sending: true })
 
-    return sendNPSScore(pageId, userId, score).then(() => {
-      this.setState({ sending: false })
-    })
+    return sendNPSScore({ pageId, userId, score }).then(() => {
+      this.setState({ sending: false, submittedScore: true })
+    }).catch(this.submitError)
   }
 
   submitFeedback () {
@@ -41,8 +53,11 @@ class NPSCollect extends React.Component {
 
     this.setState({ sending: true })
 
-    return sendNPSFeedback(pageId, userId, feedback).then(() => {
-      this.setState({ submitted: true, sending: false })
+    return sendNPSFeedback({ pageId, userId, feedback }).then(() => {
+      this.setState({ sending: false, submittedFeedback: true })
+    }).catch((err) => {
+      this.setState({ sending: false, submittedFeedback: true })
+      this.submitError(err)
     })
   }
 
@@ -56,17 +71,27 @@ class NPSCollect extends React.Component {
   }
 
   render () {
-    const { sending, submitted, score, feedback } = this.state
+    const {
+      sending,
+      score,
+      feedback,
+      submittedFeedback,
+      submittedScore } = this.state
+    const { homepage } = this.props
     const scoreSelected = score !== -1
-    const showFeedbackInput = score > -1 && score < 9
+    const showFeedbackInput = score > -1 && score < 9 && !submittedFeedback
+    const submitButtonText = (!sending && !submittedFeedback)
+      ? 'Send Feedback' : 'Sending Feedback…'
 
     return (
       <form className={css(styles.form)}>
         <header className={css(styles.header)}>
-          <img {...images.logo} className={css(styles.headerImg)} />
+          <a href={homepage}>
+            <img {...images.logo} className={css(styles.headerImg)} />
+          </a>
         </header>
 
-        <Preamble scoreSelected={scoreSelected} />
+        <Preamble score={score} completed={submittedFeedback && submittedScore} />
 
         <section>
           <div className={css(styles.question)}>
@@ -85,11 +110,12 @@ class NPSCollect extends React.Component {
               <FeedbackSection
                 key='feedback'
                 feedback={feedback}
+                submitDisabled={sending}
+                submitText={submitButtonText}
                 handleFeedbackChanged={this.handleFeedbackChanged}
                 handleFeedbackSubmitted={this.submitFeedback}
               />
             }
-            {sending && <LoadingIndicator key='sending' complete={submitted} />}
           </SlideVertical>
         </section>
       </form>
@@ -99,7 +125,8 @@ class NPSCollect extends React.Component {
 
 NPSCollect.propTypes = {
   pageId: React.PropTypes.string.isRequired,
-  userId: React.PropTypes.string.isRequired
+  userId: React.PropTypes.string.isRequired,
+  homepage: React.PropTypes.string.isRequired
 }
 
 export default NPSCollect

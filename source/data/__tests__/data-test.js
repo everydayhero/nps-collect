@@ -3,7 +3,7 @@ import { stub } from 'sinon'
 import 'sinon-as-promised'
 import jeffrey from 'jeffrey'
 
-import { sendNPSScore } from '../'
+import { sendNPSFeedback, sendNPSScore } from '../'
 
 describe('data sending module', () => {
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('data sending module', () => {
   })
 
   it('should call jeffrey.init with tracking token', () => {
-    sendNPSScore('test-page', 'test-user', 3)
+    sendNPSScore({ pageId: 'test-page', userId: 'test-user', score: 3 })
 
     assert(jeffrey.init.calledWith('test-token'))
   })
@@ -30,16 +30,30 @@ describe('data sending module', () => {
     assert(promise instanceof Promise)
   })
 
-  it('should call jeffrey.trackAction with a properly formatted event', () => {
-    sendNPSScore('test-page', 'test-user', 3)
+  it('should call jeffrey.trackAction with a properly formatted submit event', () => {
+    sendNPSScore({ pageId: 'test-page', userId: 'test-user', score: 3 })
 
     assert(jeffrey.trackAction.called)
     assert(jeffrey.trackAction.calledWith(
-      'supporter.nps.send-score',
+      'NPS Submit Score',
       {
         pageId: 'test-page',
         userId: 'test-user',
         score: 3
+      }
+    ))
+  })
+
+  it('should call jeffrey.trackAction with a properly formatted submit feedback event', () => {
+    sendNPSFeedback({ pageId: 'test-page', userId: 'test-user', score: 3, feedback: 'Love you guys!' })
+
+    assert(jeffrey.trackAction.calledWith(
+      'NPS Submit Feedback',
+      {
+        pageId: 'test-page',
+        userId: 'test-user',
+        score: 3,
+        feedback: 'Love you guys!'
       }
     ))
   })

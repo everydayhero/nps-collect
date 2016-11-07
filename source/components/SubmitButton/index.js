@@ -5,22 +5,26 @@ import styles from './styles'
 
 const SubmitButton = ({
   handleClicked,
-  text = 'Send Feedback'
+  text = 'Send Feedback',
+  disabled = false
 }) => (
   <button
     className={css(styles.button)}
     type='submit'
-    onClick={({preventDefault}) => {
-      preventDefault()
+    onClick={(e) => {
+      e.preventDefault()
       handleClicked()
     }}
+    disabled={disabled}
   >
     {text}
   </button>
 )
 
 SubmitButton.propTypes = {
-  handleClicked: PropTypes.func.isRequired
+  handleClicked: PropTypes.func.isRequired,
+  text: PropTypes.string,
+  disabled: PropTypes.bool
 }
 
 export default SubmitButton
