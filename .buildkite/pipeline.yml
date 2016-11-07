@@ -13,3 +13,7 @@ steps:
     agents:
       queue: elastic
 
+  - name: ":pill:"
+    command: "bin/buildkite bin/ci run yarn lint"
+    agents:
+      queue: elastic

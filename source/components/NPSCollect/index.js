@@ -8,7 +8,6 @@ import { sendNPSScore, sendNPSFeedback } from '../../data'
 import images from '../../images'
 import RatingButtonGroup from '../RatingButtonGroup'
 import FeedbackSection from '../FeedbackSection'
-import LoadingIndicator from '../LoadingIndicator'
 import Preamble from '../Preamble'
 import styles from './styles'
 
