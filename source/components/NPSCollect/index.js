@@ -2,7 +2,6 @@ import React from 'react'
 import css from 'cxsync'
 import { SlideVertical } from 'hero-ui/atoms/Transitions'
 import 'minimal.css'
-import './base.css'
 
 import { sendNPSScore, sendNPSFeedback } from '../../data'
 import images from '../../images'

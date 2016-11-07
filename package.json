@@ -7,7 +7,7 @@
     "start": "brb serve --client-config='./webpack.client.config'",
     "build": "brb build --client-config='./webpack.client.config'",
     "lint": "brb lint",
-    "prepublish": "brb build --client-config='./webpack.client.config' && babel source --out-dir dist/modular",
+    "prepublish": "bin/prep-assets && babel source --out-dir dist",
     "test": "brb test",
     "test:watch": "brb test --watch"
   },
