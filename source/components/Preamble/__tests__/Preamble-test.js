@@ -42,7 +42,7 @@ describe('Preamble display component', () => {
     const wrapper = mount(<Preamble score={-1} />)
 
     assert(wrapper.text() ===
-      'Thank you for donating with Everydayhero. You\'re awesome!'
-      + 'If you have a second, we\'d value your feedback.')
+      'Thank you for donating with Everydayhero. You\'re awesome!' +
+      'If you have a second, we\'d value your feedback.')
   })
 })

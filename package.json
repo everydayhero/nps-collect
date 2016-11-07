@@ -6,6 +6,8 @@
   "scripts": {
     "start": "brb serve --client-config='./webpack.client.config'",
     "build": "brb build --client-config='./webpack.client.config'",
+    "lint": "brb lint",
+    "prepublish": "brb build && babel source --out-dir dist/modular",
     "test": "brb test",
     "test:watch": "brb test --watch"
   },
@@ -20,11 +22,6 @@
   },
   "homepage": "https://github.com/everydayhero/nps-collect#readme",
   "dependencies": {
-    "babel-core": "^6.17.0",
-    "babel-plugin-espower": "^2.3.1",
-    "babel-polyfill": "^6.16.0",
-    "babel-preset-latest": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0",
     "boiler-room-builder": "^1.0.0-11",
     "cxsync": "^1.0.9",
     "hero-ui": "^4.5.2",
@@ -35,6 +32,12 @@
     "react-radial-list": "1.3.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.17.0",
+    "babel-plugin-espower": "^2.3.1",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
     "enzyme": "^2.4.1",
     "jsdom": "^9.6.0",
     "mocha": "^3.1.2",

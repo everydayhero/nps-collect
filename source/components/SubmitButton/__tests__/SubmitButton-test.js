@@ -15,9 +15,9 @@ describe('SubmitButton display component', () => {
   })
 
   it('should render the button label', () => {
-    const wrapper = shallow(<SubmitButton handleClicked={noop} text="Wassup" />)
+    const wrapper = shallow(<SubmitButton handleClicked={noop} text='Wassup' />)
 
-    assert(wrapper.text() == "Wassup")
+    assert(wrapper.text() === 'Wassup')
   })
 
   it('should call handleClicked on click', () => {

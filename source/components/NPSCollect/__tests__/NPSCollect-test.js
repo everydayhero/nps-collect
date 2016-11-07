@@ -7,7 +7,6 @@ import 'sinon-as-promised'
 import * as data from '../../../data'
 import RatingButtonGroup from '../../RatingButtonGroup'
 import FeedbackSection from '../../FeedbackSection'
-import LoadingIndicator from '../../LoadingIndicator'
 import NPSCollect from '../'
 
 describe('NPSCollect container component', () => {
