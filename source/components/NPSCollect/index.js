@@ -74,6 +74,7 @@ class NPSCollect extends React.Component {
       feedback,
       submittedFeedback,
       submittedScore } = this.state
+    const { images } = this.props
     const scoreSelected = score !== -1
     const showFeedbackInput = score > -1 && score < 9 && !submittedFeedback
     const submitButtonText = (!sending && !submittedFeedback)
@@ -81,7 +82,7 @@ class NPSCollect extends React.Component {
 
     return (
       <form className={css(styles.form)}>
-        <Preamble score={score} completed={submittedFeedback && submittedScore} />
+        <Preamble images={images} score={score} completed={submittedFeedback && submittedScore} />
 
         <section>
           <div className={css(styles.question)}>
@@ -115,7 +116,8 @@ class NPSCollect extends React.Component {
 
 NPSCollect.propTypes = {
   pageId: React.PropTypes.string.isRequired,
-  userId: React.PropTypes.string.isRequired
+  userId: React.PropTypes.string.isRequired,
+  images: React.PropTypes.object.isRequired
 }
 
 export default NPSCollect

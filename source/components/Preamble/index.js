@@ -24,7 +24,8 @@ const preambleIcon = (score, completed) => {
 
 const Preamble = ({
   score = -1,
-  completed = false
+  completed = false,
+  images
 }) => {
   const icon = preambleIcon(score, completed)
   return (
@@ -32,7 +33,7 @@ const Preamble = ({
       <div className={css(styles.header)}>
         <Fade>
           <div key={icon}>
-            <FeedbackIcon icon={icon} />
+            <FeedbackIcon icon={icon} images={images} />
           </div>
         </Fade>
       </div>
@@ -46,7 +47,8 @@ const Preamble = ({
 
 Preamble.propTypes = {
   score: React.PropTypes.number,
-  completed: React.PropTypes.bool
+  completed: React.PropTypes.bool,
+  images: React.PropTypes.object.isRequired
 }
 
 export default Preamble

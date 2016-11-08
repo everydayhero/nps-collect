@@ -18,3 +18,8 @@ jeffrey.trackAction('supporter.nps.npsRating', {
 })
 ```
 
+## Required Images
+
+Our other system isn't happy right now with the local svg imports. Pass through
+the images that will be rendered by the FeedbackIcon. See source/images.js for details
+

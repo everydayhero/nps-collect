@@ -1,14 +1,15 @@
 import React from 'react'
-import images from '../../images'
 import styles from './styles'
 import css from 'cxsync'
 
 const FeedbackIcon = ({
-  icon
+  icon,
+  images
 }) => (<img {...images[icon]} className={css(styles.headerImg)} />)
 
 FeedbackIcon.propTypes = {
-  icon: React.PropTypes.string.isRequired
+  icon: React.PropTypes.string.isRequired,
+  images: React.PropTypes.object.isRequired
 }
 
 export default FeedbackIcon
