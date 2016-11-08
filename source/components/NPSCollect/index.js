@@ -4,7 +4,6 @@ import { SlideVertical } from 'hero-ui/atoms/Transitions'
 import 'minimal.css'
 
 import { sendNPSScore, sendNPSFeedback } from '../../data'
-import images from '../../images'
 import RatingButtonGroup from '../RatingButtonGroup'
 import FeedbackSection from '../FeedbackSection'
 import Preamble from '../Preamble'
@@ -75,7 +74,6 @@ class NPSCollect extends React.Component {
       feedback,
       submittedFeedback,
       submittedScore } = this.state
-    const { homepage } = this.props
     const scoreSelected = score !== -1
     const showFeedbackInput = score > -1 && score < 9 && !submittedFeedback
     const submitButtonText = (!sending && !submittedFeedback)
@@ -83,12 +81,6 @@ class NPSCollect extends React.Component {
 
     return (
       <form className={css(styles.form)}>
-        <header className={css(styles.header)}>
-          <a href={homepage}>
-            <img {...images.logo} className={css(styles.headerImg)} />
-          </a>
-        </header>
-
         <Preamble score={score} completed={submittedFeedback && submittedScore} />
 
         <section>
@@ -123,8 +115,7 @@ class NPSCollect extends React.Component {
 
 NPSCollect.propTypes = {
   pageId: React.PropTypes.string.isRequired,
-  userId: React.PropTypes.string.isRequired,
-  homepage: React.PropTypes.string.isRequired
+  userId: React.PropTypes.string.isRequired
 }
 
 export default NPSCollect
