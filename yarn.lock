@@ -3804,10 +3804,6 @@ mime@^1.3.4, mime@1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.3.4.tgz#115f9e3b6b3daf2959983cb38f149a2d40eb5d53"
 
-minimal.css@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/minimal.css/-/minimal.css-1.0.0.tgz#074db85626ebed501cd00bb67a83e235368ce31b"
-
 minimatch@^3.0.0, minimatch@^3.0.2, minimatch@~3.0.2, "minimatch@2 || 3":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.3.tgz#2a4e4090b96b2db06a9d7df01055a62a77c9b774"
