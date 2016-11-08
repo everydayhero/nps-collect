@@ -2,12 +2,12 @@
   "name": "nps-collect",
   "version": "1.1.1",
   "description": "React prototype of NPS survey widgets for Everydayhero",
-  "main": "source/client.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "brb serve --client-config='./webpack.client.config'",
     "build": "brb build --client-config='./webpack.client.config'",
     "lint": "brb lint",
-    "prepublish": "brb build --client-config='./webpack.client.config' && babel source --out-dir dist/modular",
+    "prepublish": "bin/prep-assets && babel source --out-dir dist",
     "test": "brb test",
     "test:watch": "brb test --watch"
   },

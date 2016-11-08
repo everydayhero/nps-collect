@@ -1,0 +1,5 @@
+#! /bin/bash
+
+mkdir -p dist/assets
+cp ./assets/* dist/assets
+
