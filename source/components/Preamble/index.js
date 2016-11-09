@@ -7,7 +7,7 @@ import FeedbackIcon from '../FeedbackIcon'
 
 const scoreShowFeedback = () => (
   <div key='thanks' className={css(styles.preamble)}>
-    <p>{'Thank you for donating with Everydayhero. You\'re awesome!'}</p>
+    <h1>{'Thank you for donating with Everydayhero. You\'re awesome!'}</h1>
     <p>{'If you have a second, we\'d value your feedback.'}</p>
   </div>
 )

@@ -17,6 +17,7 @@ export default {
     color: colors.grey,
     fontWeight: 900,
     fontSize: 20,
+    marginTop: 24,
     marginBottom: 8
   }
 }
