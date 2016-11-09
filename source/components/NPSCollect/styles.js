@@ -2,7 +2,7 @@ import { colors } from '../../traits'
 
 export default {
   form: {
-    padding: '20px 0',
+    padding: '0px 0',
     textAlign: 'center',
     margin: '0 auto',
     maxWidth: '30em'
@@ -17,6 +17,7 @@ export default {
     color: colors.grey,
     fontWeight: 900,
     fontSize: 20,
+    marginTop: 24,
     marginBottom: 8
   }
 }

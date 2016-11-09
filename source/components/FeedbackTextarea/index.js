@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import css from 'cxsync'
+import Textarea from 'react-textarea-autosize'
 
 import styles from './styles'
 
@@ -7,7 +8,7 @@ const FeedbackTextarea = ({
   text,
   handleChanged
 }) => (
-  <textarea
+  <Textarea
     autoFocus
     value={text}
     className={css(styles.textarea)}

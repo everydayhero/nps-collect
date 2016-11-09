@@ -12,10 +12,11 @@ export default {
     height: 90,
     fontSize: 19,
     lineHeight: 1.2,
-    ' p': {
-      marginBottom: 12
+    ' h1': {
+      marginBottom: 12,
+      fontWeight: '900'
     },
-    ' p + p': {
+    ' p': {
       fontSize: 16,
       color: '#888'
     }
