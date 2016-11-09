@@ -1,11 +1,11 @@
 import React from 'react'
-import FeedbackIcon from '../FeedbackIcon'
 import css from 'cxsync'
 import styles from './styles'
+import images from '../../images'
 import 'minimal.css'
 
 const NPSHeader = ({
-  images, homepage
+  homepage
 }) => (
   <header className={css(styles.header)}>
     <a href={homepage}>

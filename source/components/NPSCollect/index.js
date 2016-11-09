@@ -7,6 +7,7 @@ import RatingButtonGroup from '../RatingButtonGroup'
 import FeedbackSection from '../FeedbackSection'
 import Preamble from '../Preamble'
 import styles from './styles'
+import './base.css'
 
 class NPSCollect extends React.Component {
   constructor () {

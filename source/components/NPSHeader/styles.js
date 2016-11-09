@@ -1,8 +1,6 @@
-import { colors } from '../../traits'
-
 export default {
   header: {
-    padding: '20px 0',
+    paddingTop: '20px',
     textAlign: 'center',
     margin: '0 auto',
     maxWidth: '30em',
