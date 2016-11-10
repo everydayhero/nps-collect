@@ -1,10 +1,11 @@
 import React from 'react'
 import assert from 'power-assert'
-import { shallow } from 'enzyme'
+import { mount, shallow } from 'enzyme'
 import sinon from 'sinon'
 import 'sinon-as-promised'
 
 import * as data from '../../../data'
+import images from '../../../images'
 import RatingButtonGroup from '../../RatingButtonGroup'
 import FeedbackSection from '../../FeedbackSection'
 import NPSCollect from '../'
@@ -149,6 +150,32 @@ describe('NPSCollect container component', () => {
 
     assert(wrapper.state('sending') === false)
     assert(wrapper.state('submittedScore'))
+  })
+
+  describe('sets params', () => {
+    let handleScoreSelected
+
+    before(() => {
+      handleScoreSelected = sinon.spy()
+      sinon.stub(NPSCollect.prototype, 'handleScoreSelected', handleScoreSelected)
+    })
+
+    after(() => {
+      NPSCollect.prototype.handleScoreSelected.reset()
+    })
+
+    it('should call handleScoreSelected with the selected score', () => {
+      mount(
+        <NPSCollect
+          images={images}
+          pageId='test-page'
+          userId='test-user'
+          selectedScore='8'
+        />
+      )
+
+      assert(handleScoreSelected.calledWith(8))
+    })
   })
 })
 

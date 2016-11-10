@@ -33,8 +33,7 @@ class NPSCollect extends React.Component {
     this.setState({ sending: false, errored: true })
   }
 
-  submitScore () {
-    const { score } = this.state
+  submitScore (score) {
     const { pageId, userId } = this.props
 
     this.setState({ sending: true })
@@ -60,11 +59,18 @@ class NPSCollect extends React.Component {
 
   handleScoreSelected (score) {
     this.setState({ score })
-    this.submitScore()
+    this.submitScore(score)
   }
 
   handleFeedbackChanged ({target: {value: feedback}}) {
     this.setState({ feedback })
+  }
+
+  componentDidMount () {
+    const { selectedScore } = this.props
+    if (selectedScore) {
+      this.handleScoreSelected(parseInt(selectedScore))
+    }
   }
 
   render () {
@@ -117,7 +123,8 @@ class NPSCollect extends React.Component {
 NPSCollect.propTypes = {
   pageId: React.PropTypes.string.isRequired,
   userId: React.PropTypes.string.isRequired,
-  images: React.PropTypes.object.isRequired
+  images: React.PropTypes.object.isRequired,
+  selectedScore: React.PropTypes.string
 }
 
 export default NPSCollect
