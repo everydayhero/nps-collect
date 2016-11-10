@@ -2,6 +2,17 @@
 
 set -euo pipefail
 
+DEPLOY_ENV="$1" && shift
+export JEFFREY_TOKEN=$JEFFREY_TOKEN_STAGING
+export BUCKET=$BUCKET_STAGING
+export BUCKET_PREFIX=$PREFIX_STAGING
+
+if [ $DEPLOY_ENV == "production" ];
+  export JEFFREY_TOKEN=$JEFFREY_TOKEN_PRODUCTION
+  export BUCKET=$BUCKET_PRODUCTION
+  export BUCKET_PREFIX=$PREFIX_PRODUCTION
+fi
+
 # Deploy assets
-npm run build
-npm run deploy
+yarn run build
+yarn run deploy

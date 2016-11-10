@@ -17,3 +17,19 @@ steps:
     command: "bin/buildkite bin/ci run yarn lint"
     agents:
       queue: elastic
+
+  - name: ":rocket: Release staging"
+    branches: "master"
+    type: "manual"
+
+  - name: Build and deploy to staging
+    branches: "master"
+    command: "bin/buildkite bin/ci deploy staging"
+
+  - name: ":rocket: Release production"
+    branches: "master"
+    type: "manual"
+
+  - name: Build and deploy to production
+    branches: "master"
+    command: "bin/buildkite bin/ci deploy production"

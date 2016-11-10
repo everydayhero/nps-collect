@@ -20,5 +20,8 @@ export COMMIT="${BUILDKITE_COMMIT}"
 export HEALTH_ENDPOINT='https://nps-collect.everydayhero.io/health'
 export JOB_ID="${BUILDKITE_JOB_ID}"
 export PUSH_TO_QUAY=false
+export JEFFREY_TOKEN_STAGING="${JEFFREY_TOKEN_STAGING}"
+export JEFFREY_TOKEN_PRODUCTION="${JEFFREY_TOKEN_PRODUCTION}"
 
 "$@"
+
