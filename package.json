@@ -6,8 +6,8 @@
   "scripts": {
     "start": "brb serve --client-config='./webpack.client.config'",
     "build": "brb build --client-config='./webpack.client.config'",
+    "build-components": "babel source --out-dir dist --ignore=*/**/__tests__/*",
     "lint": "brb lint",
-    "prepublish": "babel source --out-dir dist --ignore=*/**/__tests__/*",
     "deploy": "node bin/deploy.js",
     "test": "brb test",
     "test:watch": "brb test --watch"
