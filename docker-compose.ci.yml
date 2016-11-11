@@ -11,11 +11,11 @@ services:
       - BUILDKITE_MESSAGE
       - JEFFREY_TOKEN_staging
       - BUCKET_staging
-      - PREFIX_staging
+      - BUCKET_PREFIX_staging
       - AWS_KEY_staging
       - AWS_SECRET_staging
       - JEFFREY_TOKEN_production
       - BUCKET_production
-      - PREFIX_production
+      - BUCKET_PREFIX_production
       - AWS_KEY_production
       - AWS_SECRET_production
