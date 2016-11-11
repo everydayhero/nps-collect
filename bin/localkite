@@ -19,11 +19,5 @@ export BUILD_URL="http://example.com/local-build"
 export COMMIT="$(git rev-parse HEAD)"
 export HEALTH_ENDPOINT='https://nps-collect.everydayhero.io/health'
 export JOB_ID="local"
-export JEFFREY_TOKEN_STAGING="${JEFFREY_TOKEN_STAGING:-}"
-export JEFFREY_TOKEN_PRODUCTION="${JEFFREY_TOKEN_PRODUCTION:-}"
-export BUCKET_STAGING="${BUCKET_STAGING:-}"
-export PREFIX_STAGING="${PREFIX_STAGING:-}"
-export BUCKET_PRODUCTION="${BUCKET_PRODUCTION:-}"
-export PREFIX_PRODUCTION="${PREFIX_PRODUCTION:-}"
 
 "$@"
