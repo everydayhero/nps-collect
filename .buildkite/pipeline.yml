@@ -24,7 +24,7 @@ steps:
 
   - name: Build and deploy to staging
     branches: "master"
-    command: "bin/buildkite bin/ci deploy staging"
+    command: "bin/buildkite bin/ci run bin/deploy staging"
 
   - name: ":rocket: Release production"
     branches: "master"
@@ -32,4 +32,4 @@ steps:
 
   - name: Build and deploy to production
     branches: "master"
-    command: "bin/buildkite bin/ci deploy production"
+    command: "bin/buildkite bin/ci run bin/deploy production"
