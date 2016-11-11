@@ -22,3 +22,4 @@ export JOB_ID="${BUILDKITE_JOB_ID}"
 export PUSH_TO_QUAY=false
 
 "$@"
+

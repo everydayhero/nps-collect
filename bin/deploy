@@ -2,6 +2,20 @@
 
 set -euo pipefail
 
+DEPLOY_ENV="$1" && shift
+
+JEFFREY_TOKEN_VAR="JEFFREY_TOKEN_${DEPLOY_ENV}"
+BUCKET_VAR="BUCKET_${DEPLOY_ENV}"
+BUCKET_PREFIX_VAR="BUCKET_PREFIX_${DEPLOY_ENV}"
+AWS_KEY_VAR="AWS_KEY_${DEPLOY_ENV}"
+AWS_SECRET_VAR="AWS_KEY_${DEPLOY_ENV}"
+
+export JEFFREY_TOKEN=${!JEFFREY_TOKEN_VAR}
+export BUCKET=${!BUCKET_VAR}
+export BUCKET_PREFIX=${!PREFIX_VAR}
+export AWS_KEY=${!AWS_KEY_VAR}
+export AWS_SECRET=${!AWS_SECRET_VAR}
+
 # Deploy assets
-npm run build
-npm run deploy
+yarn run build
+yarn run deploy

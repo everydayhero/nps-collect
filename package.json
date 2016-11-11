@@ -6,8 +6,9 @@
   "scripts": {
     "start": "brb serve --client-config='./webpack.client.config'",
     "build": "brb build --client-config='./webpack.client.config'",
+    "build-components": "babel source --out-dir dist --ignore=*/**/__tests__/*",
     "lint": "brb lint",
-    "prepublish": "babel source --out-dir dist --ignore=*/**/__tests__/*",
+    "deploy": "node bin/deploy.js",
     "test": "brb test",
     "test:watch": "brb test --watch"
   },
@@ -31,7 +32,8 @@
     "query-string": "^4.2.3",
     "react": "^0.14.8",
     "react-radial-list": "1.3.1",
-    "react-textarea-autosize": "^4.0.5"
+    "react-textarea-autosize": "^4.0.5",
+    "s3": "^4.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

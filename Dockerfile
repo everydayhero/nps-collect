@@ -6,7 +6,9 @@ WORKDIR $APP
 
 RUN npm i -g yarn
 
-ADD . ./
+ADD package.json yarn.lock ./
 RUN yarn
+
+ADD . ./
 
 CMD "/bin/bash"

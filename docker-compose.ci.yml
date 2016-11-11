@@ -9,3 +9,13 @@ services:
       - AWS_KEY
       - AWS_SECRET
       - BUILDKITE_MESSAGE
+      - JEFFREY_TOKEN_staging
+      - BUCKET_staging
+      - PREFIX_staging
+      - AWS_KEY_staging
+      - AWS_SECRET_staging
+      - JEFFREY_TOKEN_production
+      - BUCKET_production
+      - PREFIX_production
+      - AWS_KEY_production
+      - AWS_SECRET_production
