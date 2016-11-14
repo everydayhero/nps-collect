@@ -1,6 +1,7 @@
 module.exports = [
   'BUCKET',
   'BUCKET_PREFIX',
-  'JEFFREY_TOKEN'
+  'JEFFREY_TOKEN',
+  'AWS_SECRET_ACCESS_KEY',
+  'AWS_ACCESS_KEY_ID'
 ]
-

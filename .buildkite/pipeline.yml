@@ -19,21 +19,21 @@ steps:
       queue: elastic
 
   - name: ":rocket: Release staging"
-    branches: "master"
+    branches: "master release/*"
     type: "manual"
 
   - name: Build and deploy to staging
-    branches: "master"
+    branches: "master release/*"
     command: "bin/buildkite bin/ci run bin/deploy staging"
     agents:
       queue: elastic
 
   - name: ":rocket: Release production"
-    branches: "master"
+    branches: "master release/*"
     type: "manual"
 
   - name: Build and deploy to production
-    branches: "master"
+    branches: "master release/*"
     command: "bin/buildkite bin/ci run bin/deploy production"
     agents:
       queue: elastic
