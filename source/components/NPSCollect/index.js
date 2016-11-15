@@ -121,8 +121,8 @@ class NPSCollect extends React.Component {
 }
 
 NPSCollect.propTypes = {
-  pageId: React.PropTypes.string.isRequired,
-  userId: React.PropTypes.string.isRequired,
+  pageId: React.PropTypes.string,
+  userId: React.PropTypes.string,
   images: React.PropTypes.object.isRequired,
   selectedScore: React.PropTypes.string
 }
