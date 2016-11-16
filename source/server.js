@@ -1,3 +1,7 @@
+import React from 'react'
+import { renderToString } from 'react-dom/server'
+import App from './components/App'
+
 const renderScripts = scripts => (
   scripts.map(script => `<script src=${script}></script>`).join('')
 )
@@ -27,7 +31,7 @@ const renderDocument = ({ assets = [], content = '' }) => {
 export default ({ assets }) => (route) => (
   Promise.resolve({
     result: renderDocument({
-      content: `Route: ${route}`,
+      content: renderToString(<App />),
       assets
     })
   })
