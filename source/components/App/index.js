@@ -6,7 +6,7 @@ import 'minimal.css'
 
 import NPSCollect from '../NPSCollect'
 import NPSHeader from '../NPSHeader'
-export default ({ query }) => (
+export default ({ query, analytics }) => (
   <div>
     <Helmet
       title='everydayhero Feedback'
@@ -14,6 +14,6 @@ export default ({ query }) => (
       link={links}
     />
     <NPSHeader images={images} homepage='http://www.everydayhero.com' />
-    <NPSCollect images={images} {...query} />
+    <NPSCollect images={images} analytics={analytics} {...query} />
   </div>
 )

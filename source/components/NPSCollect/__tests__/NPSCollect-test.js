@@ -4,11 +4,15 @@ import { mount, shallow } from 'enzyme'
 import sinon from 'sinon'
 import 'sinon-as-promised'
 
-import * as data from '../../../data'
 import images from '../../../images'
 import RatingButtonGroup from '../../RatingButtonGroup'
 import FeedbackSection from '../../FeedbackSection'
 import NPSCollect from '../'
+
+const data = {
+  sendNPSScore: sinon.stub().resolves(),
+  sendNPSFeedback: sinon.stub().resolves()
+}
 
 describe('NPSCollect container component', () => {
   let wrapper
@@ -16,18 +20,17 @@ describe('NPSCollect container component', () => {
   beforeEach(() => {
     wrapper = shallow(
       <NPSCollect
+        analytics={data}
         pageId='test-page'
         userId='test-user'
         homepage='http://www.everydayhero.com'
       />
     )
-    sinon.stub(data, 'sendNPSScore').resolves()
-    sinon.stub(data, 'sendNPSFeedback').resolves()
   })
 
   afterEach(() => {
-    data.sendNPSScore.restore()
-    data.sendNPSFeedback.restore()
+    data.sendNPSScore.reset()
+    data.sendNPSFeedback.reset()
   })
 
   it('should render as a form', () => {
@@ -185,18 +188,19 @@ describe('NPSContainerComponent error cases', () => {
   beforeEach(() => {
     wrapper = shallow(
       <NPSCollect
+        analytics={data}
         pageId='test-page'
         userId='test-user'
         homepage='http://www.everydayhero.com'
       />
     )
-    sinon.stub(data, 'sendNPSFeedback').resolves(() => {
+    data.sendNPSFeedback.resolves(() => {
       throw new Error('Just Nothing')
     })
   })
 
   afterEach(() => {
-    data.sendNPSFeedback.restore()
+    data.sendNPSFeedback.reset()
   })
 
   it('should still mark feedback submitted on error', async () => {
