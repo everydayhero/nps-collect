@@ -2,7 +2,6 @@ import React from 'react'
 import css from 'cxsync'
 import { SlideVertical } from 'hero-ui/atoms/Transitions'
 
-import { sendNPSScore, sendNPSFeedback } from '../../data'
 import RatingButtonGroup from '../RatingButtonGroup'
 import FeedbackSection from '../FeedbackSection'
 import Preamble from '../Preamble'
@@ -34,22 +33,22 @@ class NPSCollect extends React.Component {
   }
 
   submitScore (score) {
-    const { pageId, userId } = this.props
+    const { pageId, userId, analytics } = this.props
 
     this.setState({ sending: true })
 
-    return sendNPSScore({ pageId, userId, score }).then(() => {
+    return analytics.sendNPSScore({ pageId, userId, score }).then(() => {
       this.setState({ sending: false, submittedScore: true })
     }).catch(this.submitError)
   }
 
   submitFeedback () {
     const { feedback } = this.state
-    const { pageId, userId } = this.props
+    const { pageId, userId, analytics } = this.props
 
     this.setState({ sending: true })
 
-    return sendNPSFeedback({ pageId, userId, feedback }).then(() => {
+    return analytics.sendNPSFeedback({ pageId, userId, feedback }).then(() => {
       this.setState({ sending: false, submittedFeedback: true })
     }).catch((err) => {
       this.setState({ sending: false, submittedFeedback: true })
@@ -120,9 +119,16 @@ class NPSCollect extends React.Component {
   }
 }
 
+NPSCollect.defaultProps = {
+  analytics: {
+    sendNPSScore: () => Promise.resolve(),
+    sendNPSFeedback: () => Promise.resolve()
+  }
+}
+
 NPSCollect.propTypes = {
-  pageId: React.PropTypes.string.isRequired,
-  userId: React.PropTypes.string.isRequired,
+  pageId: React.PropTypes.string,
+  userId: React.PropTypes.string,
   images: React.PropTypes.object.isRequired,
   selectedScore: React.PropTypes.string
 }
