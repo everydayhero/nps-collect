@@ -33,22 +33,22 @@ class NPSCollect extends React.Component {
   }
 
   submitScore (score) {
-    const { pageId, userId, analytics } = this.props
+    const { analytics, ...query } = this.props
 
     this.setState({ sending: true })
 
-    return analytics.sendNPSScore({ pageId, userId, score }).then(() => {
+    return analytics.sendNPSScore({ ...query, score }).then(() => {
       this.setState({ sending: false, submittedScore: true })
     }).catch(this.submitError)
   }
 
   submitFeedback () {
     const { feedback } = this.state
-    const { pageId, userId, analytics } = this.props
+    const { analytics, ...query } = this.props
 
     this.setState({ sending: true })
 
-    return analytics.sendNPSFeedback({ pageId, userId, feedback }).then(() => {
+    return analytics.sendNPSFeedback({ feedback, ...query }).then(() => {
       this.setState({ sending: false, submittedFeedback: true })
     }).catch((err) => {
       this.setState({ sending: false, submittedFeedback: true })
